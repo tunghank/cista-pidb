@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	Mode = 0 : Single-select
+	Mode = 1 : Multi-select
+-->
+
+<SmartSearches>
+	<!-- Sample:
+		<SmartSearch name="HimaxPartNum">
+		<title>Himax Part Number</title>
+		<table>LHP_GOODS_MVT</table>
+		<keyColumn>HIMAX_PART_NUM</keyColumn>
+		<mode>1</mode>
+		<columns>
+		<column>HIMAX_PART_NUM</column>
+		</columns>
+		</SmartSearch>
+	-->
+	<SmartSearch name="ProjectName">
+		<title>Project name</title>
+		<table>PIDB_PROJECT</table>
+		<keyColumn>PROJ_NAME</keyColumn>
+		<mode>0</mode>
+	</SmartSearch>
+	<SmartSearch name="ProjectCode">
+		<title>Project code</title>
+		<table>PIDB_PROJECT_CODE</table>
+		<keyColumn>PROJ_CODE</keyColumn>
+		<mode>0</mode>
+	</SmartSearch>
+	<SmartSearch name="ProductName">
+		<title>Product name</title>
+		<table>PIDB_PRODUCT</table>
+		<keyColumn>PROD_NAME</keyColumn>
+		<mode>0</mode>
+	</SmartSearch>
+	<SmartSearch name="ProductCode">
+		<title>Product code</title>
+		<table>PIDB_PRODUCT</table>
+		<keyColumn>PROD_CODE</keyColumn>
+		<mode>0</mode>
+	</SmartSearch>
+	<SmartSearch name="Vendor">
+		<title>Vendor</title>
+		<table>WM_SAP_MASTER_VENDOR</table>
+		<keyColumn>VENDOR_CODE</keyColumn>
+		<mode>0</mode>
+	</SmartSearch>
+	<SmartSearch name="FAB">
+		<title>Fab</title>
+		<table>T_FAB_CODE</table>
+		<keyColumn>FAB</keyColumn>
+		<mode>0</mode>
+		<columns>
+			<column>FAB</column>
+			<column>FAB_DESCR</column>
+		</columns>
+	</SmartSearch>
+	<SmartSearch name="AssignToUser">
+		<title>User</title>
+		<table>PIDB_USER</table>
+		<keyColumn>USER_ID</keyColumn>
+		<columns>
+			<column>USER_ID</column>
+			<column>FIRST_NAME</column>
+			<column>LAST_NAME</column>
+		</columns>
+		<mode>1</mode>
+	</SmartSearch>
+	<SmartSearch name="AssignToRole">
+		<title>Role</title>
+		<table>PIDB_ROLE</table>
+		<keyColumn>ROLE_NAME</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	
+	<!--  add by jere 2010/01/11 -->
+	<SmartSearch name="PartNo">
+		<title>Part No</title>
+		<table>PIDB_IC_FG</table>
+		<keyColumn>PART_NUM</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	<SmartSearch name="TapeName">
+		<title>Tape Name</title>
+		<table>PIDB_IC_TAPE</table>
+		<keyColumn>TAPE_NAME</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	<SmartSearch name="CpTester">
+		<title>CP Tester</title>
+		<table>PIDB_CP_TEST_PROGRAM</table>
+		<keyColumn>TESTER</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	
+	<SmartSearch name="FtTester">
+		<title>FT Tester</title>
+		<table>PIDB_FT_TEST_PROGRAM</table>
+		<keyColumn>TESTER</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	
+	<!--  add by jere 2010/03/10 -->
+	<SmartSearch name="prodFamily">
+		<title>Prod Family</title>
+		<table>WM_SAP_MASTER_PRODUCT_FAMILY</table>
+		<keyColumn>DESCRIPTION</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+	
+	<SmartSearch name="prodLine">
+		<title>Prod Line</title>
+		<table>PIDB_FUN_PARAMETER_VALUE</table>
+		<keyColumn>FIELD_VALUE</keyColumn>
+		<mode>1</mode>
+	</SmartSearch>
+</SmartSearches>
