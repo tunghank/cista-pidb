@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+	<bean id="contextPropertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:PIDBContext.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<util:properties id="pidbConfig"
+		location="classpath:PIDBContext.properties" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:PIDBMessage</value>
+				<value>classpath:erp</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="PIDBDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean" destroy-method="close">
+		<property name="jndiName">
+		<value>HXPIDB</value>
+		</property>
+		</bean>
+
+	<!-- 1.對數據源進行代理 -->
+	<bean id="PIDBDataSourceProxy" 
+    	class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<property name="targetDataSource">
+			<ref local="PIDBDataSource" />
+		</property>
+	</bean>
+    
+	<!-- 2.直接使用數據源的代理對象 -->
+	<bean id="PIDBJdbcTemplate"
+    	class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref local="PIDBDataSourceProxy" />
+		</property>
+	</bean>
+    
+	<!-- 3.直接使用數據源的代理對象 -->
+	<bean id="PIDBTransactionManager"
+    	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="PIDBDataSourceProxy" />
+		</property>
+	</bean>
+    
+    <bean id="PIDBTransactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref local="PIDBTransactionManager" />
+		</property>
+	</bean>
+
+	<!-- Send E-mail -->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${pidb.mail.host}" />
+	</bean>
+
+	<bean id="mailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="${pidb.mail.from}" />
+	</bean>
+
+	<bean id="mailManager"
+		class="com.cista.pidb.core.mail.MailManagerImpl">
+		<property name="mailSender" ref="mailSender" />
+		<property name="message" ref="mailMessage" />
+	</bean>
+</beans>

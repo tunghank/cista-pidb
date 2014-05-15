@@ -1,0 +1,1596 @@
+<!DOCTYPE struts-config PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+ "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<global-forwards>
+		<forward name="error" path="/common/error.jsp" />
+		<forward name="success" path="/common/success.jsp" />
+		<forward name="report" path="/common/report_download.do" />
+	</global-forwards>
+	<action-mappings>
+		<action path="/common/login" scope="request"
+			type="com.cista.pidb.common.action.LoginAction" validate="false">
+			<forward name="success"
+				path="/common/main.jsp" />
+			<forward name="fail"
+				path="/index.jsp" redirect="true"/>
+		</action>
+		<action path="/common/logout" scope="request"
+			type="com.cista.pidb.common.action.LogoutAction" validate="false">
+			<forward name="success"
+				path="/index.jsp" redirect="true"/>
+		</action>
+		<action path="/dialog/smart_search" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SmartSearchAction" validate="false">
+			<forward name="success"
+				path="/dialog/smart_search.jsp" />
+		</action>
+		<action path="/common/report_download" scope="request"
+			type="com.cista.pidb.md.action.ReportDownloadAction" validate="false">
+		</action>
+		<action path="/ajax/check_user_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckUserExistAction" validate="false">
+		</action>
+		<action path="/ajax/check_user_on_ad" scope="request"
+			type="com.cista.pidb.ajax.CheckUserOnADAction" validate="false">
+		</action>
+
+		<action path="/admin/user_list" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.UserListAction" validate="false">
+			<forward name="success"
+				path="/admin/user_list.jsp" />
+		</action>
+		<action path="/admin/user_create" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.UserCreateAction" validate="false">
+			<forward name="success"
+				path="/admin/user_create.jsp" />
+			<forward name="return2list"
+				path="/admin/user_list.do?m=pre" />
+		</action>
+		<action path="/admin/user_edit" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.UserEditAction" validate="false">
+			<forward name="success"
+				path="/admin/user_edit.jsp" />
+			<forward name="return2list"
+				path="/admin/user_list.do?m=pre" />
+		</action>
+
+				<!--*****Add by 990044  2008/07/31*****-->
+
+		<action path="/admin/parameter_list" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.ParameterListAction" validate="false">
+			<forward name="success"
+				path="/admin/parameter_list.jsp" />
+		</action>
+		<action path="/admin/parameter_create" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.ParameterCreateAction" validate="false">
+			<forward name="success"
+				path="/admin/parameter_create.jsp" />
+			<forward name="return2list"
+				path="/admin/parameter_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/admin/parameter_edit.do?m=pre" />
+		</action>
+		<action path="/admin/parameter_edit" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.ParameterEditAction" validate="false">
+			<forward name="success"
+				path="/admin/parameter_edit.jsp" />
+			<forward name="return2list"
+				path="/admin/parameter_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/admin/parameter_edit.do?m=pre" />
+		</action>
+		<action path="/ajax/parameter_item_list" scope="request"
+			type="com.cista.pidb.ajax.FetchItem" validate="false">
+		</action>
+		<action path="/ajax/check_parameter_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckParameterExist" validate="false">
+		</action>
+					<!--*****Add by END*****-->		
+
+		<action path="/admin/role_create" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.RoleCreateAction" validate="false">
+			<forward name="success"
+				path="/admin/role_create.jsp" />
+			<forward name="return2list"
+				path="/admin/role_list.do?m=pre" />
+		</action>
+		<action path="/admin/role_list" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.RoleListAction" validate="false">
+			<forward name="success"
+				path="/admin/role_list.jsp" />
+		</action>
+		<action path="/ajax/check_role_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckRoleExist" validate="false">
+		</action>
+
+		<action path="/admin/role_edit" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.RoleEditAction" validate="false">
+			<forward name="success"
+				path="/admin/role_edit.jsp" />
+			<forward name="return2list"
+				path="/admin/role_list.do?m=pre" />
+		</action>
+		<action path="/ajax/fetch_user_from_ad" scope="request"
+			type="com.cista.pidb.ajax.FetchUserFromAD" validate="false">
+		</action>
+		<action path="/ajax/fetch_email" scope="request"
+			type="com.cista.pidb.ajax.FetchEmail" validate="false">
+		</action>
+
+		<action path="/ajax/fetch_proj" scope="request"
+			type="com.cista.pidb.ajax.FetchProj" validate="false">
+		</action>	
+		<action path="/ajax/check_proj_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckProjectExist" validate="false">
+		</action>		
+		<action path="/md/proj_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProjectCreateAction" validate="false">
+			<forward name="create"
+				path="/md/cista_proj_create.jsp"/>
+			<forward name="success"
+				path="/md/proj_query.do?m=pre"/>
+			<forward name="fail"
+				path="/md/proj_create.do?m=pre" />
+			<forward name="releaseFail"
+				path="/md/proj_edit.do?m=pre" />
+		</action>
+		
+		<action path="/md/cog_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CogCreateAction" validate="false">
+			<forward name="success"
+				path="/md/cog_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cog_create.jsp" />
+		</action>
+		<action path="/md/cog_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CogEditAction" validate="false">
+			<forward name="success"
+				path="/md/cog_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cog_edit.jsp" />
+		</action>	
+		<action path="/md/cog_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CogQueryAction" validate="false">
+			<forward name="query"
+				path="/md/cog_query.jsp" />
+			<forward name="result"
+				path="/md/cog_query_result.jsp" />
+			<forward name="create"
+				path="/md/cog_create.do?m=pre" />
+			<forward name="edit"
+				path="/md/cog_edit.do?m=pre" />
+		</action>
+		
+		<action path="/ajax/check_icFg_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckIcFgExist" validate="false">
+		</action>
+		
+		<action path="/ajax/check_mpList_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckMpListExist" validate="false">
+		</action>
+		<action path="/ajax/check_cog_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckCogExist" validate="false">
+		</action>
+		<action path="/ajax/check_bumpMask_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckBumpMaskExist" validate="false">
+		</action>
+		<action path="/ajax/check_cpTestProgram_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckCpTestProgramExist" validate="false">
+		</action>
+		<action path="/ajax/check_ftTestProgram_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckFtTestProgramExist" validate="false">
+		</action>
+		<action path="/ajax/check_prodStdTestRef_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckProdStdTestRefExist" validate="false">
+		</action>
+		<action path="/md/mp_list_find_trayDrawNo" scope="request"
+			type="com.cista.pidb.md.action.MpListListAction" validate="false">
+		</action>
+		<action path="/md/mp_list_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MpListCreateAction" validate="false">
+			<forward name="success"
+				path="/md/mp_list_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/mp_list_create.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/mp_list_edit.do?m=pre" />
+		</action>
+		<action path="/md/mp_list_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MpListEditAction" validate="false">
+			<forward name="success"
+				path="/md/mp_list_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/mp_list_edit.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/mp_list_edit.do?m=pre" />
+		</action>	
+		<action path="/md/mp_list_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MpListQueryAction" validate="false">
+			<forward name="query"
+				path="/md/mp_list_query.jsp" />
+			<forward name="result"
+				path="/md/mp_list_query_result.jsp" />			
+		</action>					
+
+		<action path="/dialog/select_user" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectUser" validate="false">
+			<forward name="success"
+				path="/dialog/select_user.jsp" />
+		</action>
+
+		<action path="/dialog/select_sapMasterCustomer" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterCustomer" validate="false">
+			<forward name="success"
+				path="/dialog/select_sapMasterCustomer.jsp" />
+		</action>
+		<!-- Add From Hank For Select MP List EOL Customer -->
+		<action path="/dialog/select_mpListEolCustomer" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectMPListEolCustomer" validate="false">
+			<forward name="success"
+				path="/dialog/select_mpListEolCustomer.jsp" />
+		</action>
+
+		<action path="/md/mp_list_eol_cust_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MpListEolCustEditAction" validate="false">
+		</action>
+		<!-- Add From Frank For MP List Customer Map Vendor -->
+		<action path="/dialog/select_mpListCustomerMap" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectMPListCustomerMap" validate="false">
+			<forward name="success"
+				path="/dialog/select_mpListCustomerMap.jsp" />
+		</action>
+		<action path="/md/mp_list_cust_map_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MpListCustMapEditAction" validate="false">
+		</action>
+		<action path="/dialog/select_product1" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProductListAction" validate="false">
+			<forward name="success"
+				path="/dialog/select_product1.jsp" />
+		</action>
+		<action path="/dialog/select_product2" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProduct2" validate="false">
+			<forward name="success"
+				path="/dialog/select_product2.jsp" />
+		</action>
+
+		<action path="/md/proj_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProjectQueryAction" validate="false">
+			<forward name="success"
+				path="/md/proj_query.jsp" />
+			<forward name="result"
+				path="/md/proj_query_result.jsp" />
+		</action>
+		<action path="/dialog/select_proj_option" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.selectProjOption" validate="false">
+			<forward name="success"
+				path="/dialog/select_proj_option.jsp" />
+		</action>
+					<!--Add by 990044 2008/07/11-->
+		<action path="/dialog/select_functionParameter" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectFunctionParameter" validate="false">
+			<forward name="success"
+				path="/dialog/select_functionParameter.jsp" />
+		</action>
+
+		<action path="/dialog/select_productcode_tradpkg" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProductCodeFromTradPkg" validate="false">
+			<forward name="pre_success" path="/dialog/select_prodCode_tradPkg.jsp" />
+		</action>		
+		
+		<action path="/admin/function_create" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.FunctionCreateAction" validate="false">
+			<forward name="success"
+				path="/admin/function_create.jsp" />
+			<forward name="return2list"
+				path="/admin/function_list.do?m=pre" />
+		</action>
+		<action path="/admin/function_list" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.FunctionListAction" validate="false">
+			<forward name="success"
+				path="/admin/function_list.jsp" />
+		</action>
+		<action path="/ajax/check_function_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckFunctionExist" validate="false">
+		</action>
+
+		<action path="/admin/function_edit" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.FunctionEditAction" validate="false">
+			<forward name="success"
+				path="/admin/function_edit.jsp" />
+			<forward name="return2list"
+				path="/admin/function_list.do?m=pre" />
+		</action>		
+		
+		<action path="/admin/error_handler" scope="request" parameter="m"
+			type="com.cista.pidb.admin.action.ErrorHandlerAction" validate="false">
+			<forward name="nologin"
+				path="/index.jsp" />
+			<forward name="accessdenied"
+				path="/common/main.jsp" />				
+		</action>
+		
+		<action path="/md/ic_wafer_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcWaferQueryAction" validate="false">
+			<forward name="pre_success" path="/md/ic_wafer_query.jsp" />
+			<forward name="query_success" path="/md/ic_wafer_query_result.jsp"/>
+			<forward name="result" path="/md/ic_wafer_query_result.jsp"/>
+		</action>
+		
+		<action path="/md/ic_wafer_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcWaferCreateAction" validate="false">			
+			<forward name="save_success" path="/md/ic_wafer_query.do?m=pre"/>
+			<forward name="fail" path="/md/ic_wafer_create.do?m=pre"></forward>
+			<forward name="pre_success" path="/md/ic_wafer_create.jsp"></forward>
+			<forward name="release_fail" path="/md/ic_wafer_edit.do?m=pre"/>			
+		</action>
+
+			<!-- Add From Frank For Select IC WAFER VarIant And Polish-->
+		<action path="/dialog/select_icWaferVariant" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcWaferVariant" validate="false">
+			<forward name="success"
+				path="/dialog/select_icWaferVariant.jsp" />
+		</action>
+
+		<action path="/md/ic_wafer_variant_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcWaferVariantEditAction" validate="false">
+		</action>
+
+		<action path="/dialog/select_cpMaterial" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpMaterial" validate="false">
+			<forward name="success"
+				path="/dialog/select_cpMaterial.jsp" />
+		</action>
+					
+		<action path="/md/ic_wafer_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcWaferEditAction" validate="false">
+			<forward name="pre_success" path="/md/ic_wafer_edit.jsp" />
+			<forward name="save_success" path="/md/ic_wafer_query.do?m=pre"/>
+			<forward name="fail" path="/md/ic_wafer_query.do?m=pre"></forward>
+			<forward name="release_fail" path="/md/ic_wafer_edit.do?m=pre"/>
+		</action>
+						
+		<action path="/md/bump_mask_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.BumpMaskCreateAction" validate="false">
+			<forward name="success"
+				path="/md/bump_mask_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/bump_mask_create.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/bump_mask_edit.jsp" />
+		</action>
+		<action path="/md/bump_mask_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.BumpMaskEditAction" validate="false">
+			<forward name="success"
+				path="/md/bump_mask_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/bump_mask_edit.jsp" />
+		</action>	
+		<action path="/md/bump_mask_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.BumpMaskQueryAction" validate="false">
+			<forward name="query"
+				path="/md/bump_mask_query.jsp" />
+			<forward name="result"
+				path="/md/bump_mask_query_result.jsp" />			
+		</action>
+		
+		<action path="/md/cp_test_prog_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpTestProgramCreateAction" validate="false">
+			<forward name="success"
+				path="/md/cp_test_prog_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cp_test_prog_create.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/cp_test_prog_edit.jsp" />
+				
+		</action>
+		<action path="/md/cp_test_prog_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpTestProgramEditAction" validate="false">
+			<forward name="success"
+				path="/md/cp_test_prog_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cp_test_prog_edit.jsp" />
+		</action>	
+		<action path="/md/cp_test_prog_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpTestProgramQueryAction" validate="false">
+			<forward name="query"
+				path="/md/cp_test_prog_query.jsp" />
+			<forward name="result"
+				path="/md/cp_test_prog_query_result.jsp" />			
+		</action>
+
+		<!-- For CP_Material_Number -->
+			<action path="/md/cp_material_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpMaterialCreateAction" validate="false">
+			<forward name="success"
+				path="/md/cp_material_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cp_material_create.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/cp_material_edit.jsp" />
+				
+		</action>
+		<action path="/md/cp_material_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpMaterialEditAction" validate="false">
+			<forward name="success"
+				path="/md/cp_material_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cp_material_edit.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/cp_material_edit.do?m=pre" />
+		</action>	
+		<action path="/md/cp_material_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpMaterialQueryAction" validate="false">
+			<forward name="query"
+				path="/md/cp_material_query.jsp" />
+			<forward name="result"
+				path="/md/cp_material_query_result.jsp" />			
+		</action>
+		
+		<action path="/ajax/check_cpMaterial_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckCpMaterialExist" validate="false">
+		</action>
+		<action path="/ajax/fetch_maxVariantCpMaterial" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantCpMaterial" validate="false">
+		</action>
+			<!--For CP_Material_Number End-->
+
+				<!-- For CP_Polish_Material_Number -->
+
+		<action path="/md/cp_polish_material_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpPolishMaterialEditAction" validate="false">
+			<forward name="success"
+				path="/md/cp_polish_material_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/cp_polish_material_edit.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/cp_polish_material_edit.do?m=pre" />
+		</action>	
+		<action path="/md/cp_polish_material_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CpPolishMaterialQueryAction" validate="false">
+			<forward name="query"
+				path="/md/cp_polish_material_query.jsp" />
+			<forward name="result"
+				path="/md/cp_polish_material_query_result.jsp" />			
+		</action>
+		
+		<action path="/dialog/select_cpPolishMaterial" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpPolishMaterial" validate="false">
+			<forward name="success"
+				path="/dialog/select_cpPolishMaterial.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_maxVariantCpPolish" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantPolish" validate="false">
+		</action>
+
+		<!-- For CP_Polish_Material_Number End-->
+
+
+		<!-- For Color_Filter_Material_Number -->
+
+		<action path="/md/color_filter_material_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ColorFilterMaterialCreateAction" validate="false">
+			<forward name="save_success"	path="/md/color_filter_material_edit.do?m=pre" />
+			<forward name="pre_success" path="/md/color_filter_material_create.jsp"/>
+		</action>	
+
+		<action path="/md/color_filter_material_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ColorFilterMaterialEditAction" validate="false">
+			<forward name="pre_success"	path="/md/color_filter_material_edit.jsp" />
+			<forward name="save_success" path="/md/color_filter_material_edit.do?m=pre"/>
+		</action>
+
+		<action path="/md/color_filter_material_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ColorFilterMaterialQueryAction" validate="false">
+			<forward name="query"
+				path="/md/color_filter_material_query.jsp" />
+			<forward name="result"
+				path="/md/color_filter_material_query_result.jsp" />			
+		</action>
+		
+		<action path="/dialog/select_colorFilterMaterial" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectColorFilterMaterial" validate="false">
+			<forward name="success"
+				path="/dialog/select_colorFilterMaterial.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_maxVariantColorFilter" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantCF" validate="false">
+		</action>
+		<!-- For Color_Filter_Material_Number End-->
+
+		<!-- For Wafer_CF_Material_Number -->
+
+		<action path="/md/wafer_color_filter_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WaferColorFilterEditAction" validate="false">
+			<forward name="success"
+				path="/md/wafer_color_filter_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/wafer_color_filter_edit.jsp" />
+		</action>	
+		<action path="/md/wafer_color_filter_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WaferColorFilterQueryAction" validate="false">
+			<forward name="query"
+				path="/md/wafer_color_filter_query.jsp" />
+			<forward name="result"
+				path="/md/wafer_color_filter_query_result.jsp" />			
+		</action>
+		
+		<action path="/dialog/select_waferColorFilter" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectWaferColorFilter" validate="false">
+			<forward name="success"
+				path="/dialog/select_waferColorFilter.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_maxVariantWaferCF" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantWaferCF" validate="false">
+		</action>
+		<!-- For Wafer_CF_Material_Number End-->
+
+		<!-- For Csp_Material_Number -->
+		<action path="/dialog/select_cpCspMaterialNum" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpCspMaterialNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_cpCspMaterial.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_maxVariantCsp" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantCsp" validate="false">
+						<forward name="success"
+				path="/dialog/select_cpCspMaterial.jsp" />
+		</action>
+		 <!-- For Csp_Material_Number End-->
+		
+		<action path="/md/ft_test_prog_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.FtTestProgramCreateAction" validate="false">
+			<forward name="success"
+				path="/md/ft_test_prog_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/ft_test_prog_create.jsp" />
+			<forward name="viewEditJsp"
+				path="/md/ft_test_prog_edit.jsp" />
+		</action>
+		<action path="/md/ft_test_prog_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.FtTestProgramEditAction" validate="false">
+			<forward name="success"
+				path="/md/ft_test_prog_query.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/ft_test_prog_edit.jsp" />
+		</action>	
+		<action path="/md/ft_test_prog_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.FtTestProgramQueryAction" validate="false">
+			<forward name="query"
+				path="/md/ft_test_prog_query.jsp" />
+			<forward name="result"
+				path="/md/ft_test_prog_query_result.jsp" />			
+		</action>
+		
+		<action path="/md/prod_std_test_ref_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProdStdTestRefCreateAction" validate="false">
+			<forward name="success"
+				path="/md/prod_std_test_ref_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/prod_std_test_ref_create.jsp" />
+		</action>
+		<action path="/md/prod_std_test_ref_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProdStdTestRefEditAction" validate="false">
+			<forward name="success"
+				path="/md/prod_std_test_ref_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/prod_std_test_ref_edit.jsp" />
+		</action>	
+		<action path="/md/prod_std_test_ref_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProdStdTestRefQueryAction" validate="false">
+			<forward name="query"
+				path="/md/prod_std_test_ref_query.jsp" />
+			<forward name="result"
+				path="/md/prod_std_test_ref_query_result.jsp" />			
+		</action>
+		
+		<action path="/dialog/select_proj_code" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCode" validate="false">
+			<forward name="success" path="/dialog/select_proj_code.jsp" />
+			
+		</action>
+		<action path="/dialog/select_proj_name" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjName" validate="false">
+			<forward name="success"
+				path="/dialog/select_proj_name.jsp" />
+		</action>
+		<action path="/dialog/select_sapAppCategory" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapAppCategory" validate="false">
+			<forward name="success"
+				path="/dialog/select_sapAppCategory.jsp" />
+		</action>
+		<action path="/dialog/select_sapMasterIcType" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterIcType" validate="false">
+			<forward name="success"
+				path="/dialog/select_sapMasterIcType.jsp" />
+		</action>		
+		<action path="/dialog/select_sapMasterPackageType" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterPackageType" validate="false">
+			<forward name="success"
+				path="/dialog/select_sapMasterPackageType.jsp" />
+		</action>
+		
+		<action path="/dialog/select_sapMasterProductFamily" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterProductFamily" validate="false">
+			<forward name="success"
+				path="/dialog/select_sapMasterProductFamily.jsp" />
+		</action>
+		<action path="/dialog/select_sapMasterVendor" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterVendor" validate="false">
+			<forward name="check_success"
+				path="/dialog/select_sapMasterVendor.jsp" />
+			<forward name="radio_success"
+				path="/dialog/select_sapMasterVendorRadio.jsp" />	
+		</action>
+				<!--	Add by 990044 For Sdram search by Name  -->
+		<action path="/dialog/select_sapMasterVendorByName" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSapMasterVendorByName" validate="false">
+			<forward name="check_success"
+				path="/dialog/select_sapMasterVendorByName.jsp" />
+			<forward name="radio_success"
+				path="/dialog/select_sapMasterVendorRadio.jsp" />	
+		</action>
+					<!--	Add end		-->
+		<action path="/dialog/select_partNum" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPartNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_partNum.jsp" />
+		</action>
+        <action path="/dialog/select_partNum_checkbox" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPartNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_partNum_checkbox.jsp" />
+		</action>
+		<action path="/dialog/select_pkg_code" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPkgCode" validate="false">
+			<forward name="success"
+				path="/dialog/select_pkg_code.jsp" />
+		</action>
+        <action path="/dialog/select_prod_name" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProductListAction" validate="false">
+			<forward name="success"
+				path="/dialog/select_prod_name.jsp" />
+		</action>
+		<action path="/dialog/select_cog_pocketQua" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCogPocketQua" validate="false">
+			<forward name="success"
+				path="/dialog/select_cog_pocketQua.jsp" />
+		</action>
+		<action path="/dialog/select_cog_trayDrawingNo" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectTrayDrawingNo" validate="false">
+			<forward name="success"
+				path="/dialog/select_cog_trayDrawingNo.jsp" />
+		</action>
+		<action path="/dialog/select_icWafer_projCodeWVersion" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCodeWVersion" validate="false">
+			<forward name="success"
+				path="/dialog/select_icWafer_projCodeWVersion.jsp" />
+		</action>
+		<action path="/dialog/select_icWafer_projCodeWVersion_radio" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCodeWVersion" validate="false">
+			<forward name="success"
+				path="/dialog/select_icWafer_projCodeWVersion_radio.jsp" />
+		</action>
+		<action path="/md/proj_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProjectEditAction" validate="false">
+			<forward name="edit"
+				path="/md/proj_edit.jsp" />
+			<forward name="success"
+				path="/md/proj_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/proj_edit.do?m=pre" />
+		</action>
+		
+		<action path="/md/trad_pkg_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TradPkgQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/trad_pkg_query.jsp" />
+			<forward name="query_success"
+				path="/md/trad_pkg_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/trad_pkg_query_result.jsp" />
+		</action>
+		
+		<action path="/md/trad_pkg_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TradPkgCreateAction" validate="false">
+			<forward name="save_success"	path="/md/trad_pkg_query.do?m=pre" />
+			<forward name="pre_success" path="/md/trad_pkg_create.jsp"/>	
+			<forward name="release_fail" path="/md/trad_pkg_edit.do?m=pre"/>
+		</action>
+		<action path="/md/trad_pkg_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TradPkgEditAction" validate="false">
+			<forward name="pre_success"	path="/md/trad_pkg_edit.jsp" />
+			<forward name="fail" path="/md/trad_pkg_create.do?m=pre" />
+			<forward name="save_success" path="/md/trad_pkg_query.do?m=pre"/>
+			<forward name="release_fail" path="/md/trad_pkg_edit.do?m=pre"/>
+			
+		</action>
+		<action path="/dialog/select_cpProgram" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpProgram" validate="false">
+			<forward name="success"
+				path="/dialog/select_cpProgram.jsp" />
+			<forward name="successToStd"
+				path="/dialog/select_cpProgramStd_radio.jsp" />		
+		</action>
+
+		<action path="/dialog/select_ftProgram" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectFtProgram" validate="false">
+			<forward name="success"
+				path="/dialog/select_ftProgram.jsp" />
+			<forward name="successToStd"
+				path="/dialog/select_ftProgramStd_radio.jsp" />					
+		</action>
+		
+		<action path="/md/ic_fg_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcFgQueryAction" validate="false">
+			<forward name="success"
+				path="/md/ic_finished_goods_query.jsp" />
+			<forward name="result"
+				path="/md/ic_finished_goods_query_result.jsp" />
+		</action>		
+		<action path="/md/ic_fg_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcFgEditAction" validate="false">
+			<forward name="edit"
+				path="/md/ic_finished_goods_edit.jsp" />
+			<forward name="success"
+				path="/md/ic_fg_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/ic_fg_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/ic_fg_edit.do?m=pre" />	
+		</action>
+		<action path="/md/ic_fg_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcFgCreateAction" validate="false">
+			<forward name="create"
+				path="/md/ic_finished_goods_create.jsp" />
+			<forward name="success"
+				path="/md/ic_fg_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/ic_fg_create.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/ic_fg_edit.do?m=pre" />	
+		</action>	
+		
+		<action path="/dialog/select_ic_fg_material_num" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgMaterialNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_icFgMaterialNum.jsp" />
+		</action>			
+		<action path="/dialog/select_ic_fg_cust" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgCust" validate="false">
+			<forward name="success"
+				path="/dialog/select_icFgCust.jsp" />
+		</action>
+		<action path="/dialog/select_ic_fg_apModel" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgApModel" validate="false">
+			<forward name="success"
+				path="/dialog/select_icFgApModel.jsp" />
+		</action>							
+		<action path="/dialog/select_ic_tape_material_num" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcTapeMaterialNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_icTapeMaterialNum.jsp" />
+		</action>		
+		<action path="/dialog/select_ic_tape_name" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcTapeName" validate="false">
+			<forward name="success"
+				path="/dialog/select_icTapeName.jsp" />
+		</action>	
+		<action path="/dialog/select_sprocket_hole_num" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectSprocketHoleNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_sprocketHoleNum.jsp" />
+		</action>		
+		<action path="/dialog/select_min_pitch" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectMinPitch" validate="false">
+			<forward name="success"
+				path="/dialog/select_minPitch.jsp" />
+		</action>				
+					
+		<action path="/md/ic_tape_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcTapeQueryAction" validate="false">
+			<forward name="success"
+				path="/md/ic_tape_query.jsp" />
+			<forward name="result"
+				path="/md/ic_tape_query_result.jsp" />
+		</action>		
+		<action path="/md/ic_tape_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcTapeEditAction" validate="false">
+			<forward name="edit"
+				path="/md/ic_tape_edit.jsp" />
+			<forward name="success"
+				path="/md/ic_tape_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/ic_tape_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/ic_tape_edit.do?m=pre" />				
+		</action>
+		<action path="/md/ic_tape_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcTapeCreateAction" validate="false">
+			<forward name="create"
+				path="/md/ic_tape_create.jsp" />
+			<forward name="success"
+				path="/md/ic_tape_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/ic_tape_create.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/ic_tape_edit.do?m=pre" />
+		</action>
+		<action path="/dialog/select_material_num" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectMaterialNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_material_num.jsp" />
+		</action>	
+		
+		<action path="/dialog/select_proj_code_w_version" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCodeWVersion" validate="false">
+			<forward name="success" path="/dialog/select_projcode_wversion.jsp" />			
+		</action>
+		
+		<action path="/dialog/select_pkg_name" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPkgName" validate="false">
+			<forward name="success" path="/dialog/select_pkg_name.jsp" />
+		</action>
+		
+		<action path="/dialog/select_package_code" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPackageCode" validate="false">
+			<forward name="success" path="/dialog/select_package_code.jsp" />
+			<forward name="list_success" path="/dialog/select_packageCode_radio.jsp" />
+		</action>
+		
+		<action path="/dialog/select_icTape_pkgVersion_cb" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcTapeListAction" validate="false">
+			<forward name="success"
+				path="/dialog/select_icTape_pkgVersion_cb.jsp" />
+		</action>
+		<action path="/dialog/select_icTape_pkgVersion_radio" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.IcTapeListAction" validate="false">
+			<forward name="success"
+				path="/dialog/select_icTape_pkgVersion_radio.jsp" />
+		</action>
+
+		<action path="/md/zs_sdram_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsSdramQueryAction" validate="false">
+			<forward name="success"
+				path="/md/zs_sdram_query.jsp" />
+			<forward name="result"
+				path="/md/zs_sdram_query_result.jsp" />
+		</action>		
+		<action path="/md/zs_sdram_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsSdramEditAction" validate="false">
+			<forward name="edit"
+				path="/md/zs_sdram_edit.jsp" />
+			<forward name="success"
+				path="/md/zs_sdram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_sdram_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_sdram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_sdram_edit.do?m=pre"/>
+		</action>
+		<action path="/md/zs_sdram_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsSdramCreateAction" validate="false">
+			<forward name="create"
+				path="/md/zs_sdram_create.jsp" />
+			<forward name="success"
+				path="/md/zs_sdram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_sdram_create.do?m=pre" />
+			<forward name="viewEditJsp" 
+				path="/md/zs_sdram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_sdram_edit.do?m=pre"/>
+		</action>
+
+					<!--  add FLASH_RAM  by 990044 2008/08/18-->
+
+		<action path="/md/zs_flashram_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsFlashramQueryAction" validate="false">
+			<forward name="success"
+				path="/md/zs_flashram_query.jsp" />
+			<forward name="result"
+				path="/md/zs_flashram_query_result.jsp" />
+		</action>		
+		<action path="/md/zs_flashram_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsFlashramEditAction" validate="false">
+			<forward name="edit"
+				path="/md/zs_flashram_edit.jsp" />
+			<forward name="success"
+				path="/md/zs_flashram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_flashram_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_flashram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_flashram_edit.do?m=pre"/>
+		</action>
+		<action path="/md/zs_flashram_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsFlashramCreateAction" validate="false">
+			<forward name="create"
+				path="/md/zs_flashram_create.jsp" />
+			<forward name="success"
+				path="/md/zs_flashram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_flashram_create.do?m=pre" />
+			<forward name="viewEditJsp" 
+				path="/md/zs_flashram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_flashram_edit.do?m=pre"/>
+		</action>
+						<!-- add end -->
+
+			<!--  add USB_RAM  by 990044 2008/09/11-->
+
+		<action path="/md/zs_usbram_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsUsbramQueryAction" validate="false">
+			<forward name="success"
+				path="/md/zs_usbram_query.jsp" />
+			<forward name="result"
+				path="/md/zs_usbram_query_result.jsp" />
+		</action>		
+		<action path="/md/zs_usbram_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsUsbramEditAction" validate="false">
+			<forward name="edit"
+				path="/md/zs_usbram_edit.jsp" />
+			<forward name="success"
+				path="/md/zs_usbram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_usbram_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_usbram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_usbram_edit.do?m=pre"/>
+		</action>
+		<action path="/md/zs_usbram_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsUsbramCreateAction" validate="false">
+			<forward name="create"
+				path="/md/zs_usbram_create.jsp" />
+			<forward name="success"
+				path="/md/zs_usbram_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_usbram_create.do?m=pre" />
+			<forward name="viewEditJsp" 
+				path="/md/zs_usbram_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_usbram_edit.do?m=pre"/>
+		</action>
+
+		<!-- add end -->
+
+		<action path="/md/zs_eeprom_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsEepromQueryAction" validate="false">
+			<forward name="success"
+				path="/md/zs_eeprom_query.jsp" />
+			<forward name="result"
+				path="/md/zs_eeprom_query_result.jsp" />
+		</action>		
+		<action path="/md/zs_eeprom_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsEepromEditAction" validate="false">
+			<forward name="edit"
+				path="/md/zs_eeprom_edit.jsp" />
+			<forward name="success"
+				path="/md/zs_eeprom_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_eeprom_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_eeprom_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_eeprom_edit.do?m=pre"/>
+		</action>
+		<action path="/md/zs_eeprom_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsEepromCreateAction" validate="false">
+			<forward name="create"
+				path="/md/zs_eeprom_create.jsp" />
+			<forward name="success"
+				path="/md/zs_eeprom_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_eeprom_create.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_eeprom_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_eeprom_edit.do?m=pre"/>
+		</action>
+
+		<action path="/md/zs_hdcpkey_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsHdcpkeyQueryAction" validate="false">
+			<forward name="success"
+				path="/md/zs_hdcpkey_query.jsp" />
+			<forward name="result"
+				path="/md/zs_hdcpkey_query_result.jsp" />
+		</action>		
+		<action path="/md/zs_hdcpkey_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsHdcpkeyEditAction" validate="false">
+			<forward name="edit"
+				path="/md/zs_hdcpkey_edit.jsp" />
+			<forward name="success"
+				path="/md/zs_hdcpkey_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_hdcpkey_edit.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_hdcpkey_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_hdcpkey_edit.do?m=pre"/>
+		</action>
+		<action path="/md/zs_hdcpkey_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ZsHdcpkeyCreateAction" validate="false">
+			<forward name="create"
+				path="/md/zs_hdcpkey_create.jsp" />
+			<forward name="success"
+				path="/md/zs_hdcpkey_query.do?m=pre" />
+			<forward name="fail"
+				path="/md/zs_hdcpkey_create.do?m=pre" />
+			<forward name="viewEditJsp"
+				path="/md/zs_hdcpkey_edit.do?m=pre" />
+			<forward name="release_fail" path="/md/zs_hdcpkey_edit.do?m=pre"/>
+		</action>
+		<action path="/ajax/check_icTape_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckIcTapeExist" validate="false">
+		</action>		
+		<action path="/md/corner_lot_char_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CornerLotCharQueryAction" validate="false">
+			<forward name="pre_success" path="/md/corner_lot_char_query.jsp" />
+			<forward name="query_succuss" path="/md/corner_lot_char_query_result.jsp" />
+			<forward name="page_success" path="/md/corner_lot_char_query_result.jsp"></forward>
+		</action>
+		<action path="/md/corner_lot_char_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CornerLotCharCreateAction" validate="false">
+			<forward name="pre_success" path="/md/corner_lot_char_create.jsp" />
+			<forward name="save_success" path="/md/corner_lot_char_edit.do?m=pre" />
+			<forward name="fail" path="/md/corner_lot_char_create.do?m=pre" />
+		</action>
+		
+		<action path="/md/corner_lot_char_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CornerLotCharEditAction" validate="false">
+			<forward name="pre_success" path="/md/corner_lot_char_edit.jsp" />
+			<forward name="save_success" path="/md/corner_lot_char_edit.do?m=pre" />
+		</action>
+		<action path="/dialog/select_icFgPartNum" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgPartNum" validate="false">
+			<forward name="success" path="/dialog/select_icFgPartNum.jsp" />
+		</action>
+		<action path="/dialog/select_icFgPkgCode" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgPkgCode" validate="false">
+			<forward name="success" path="/dialog/select_icFgPkgCode.jsp" />
+		</action>
+		<action path="/dialog/select_icFgProdCode" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgProdCode" validate="false">
+			<forward name="success" path="/dialog/select_icFgProdCode.jsp" />
+		</action>		
+		<action path="/dialog/select_icFgSpecPkgCode" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectIcFgSpecPkgCode" validate="false">
+			<forward name="success" path="/dialog/select_icFgSpecPkgCode.jsp" />
+		</action>			
+		<action path="/dialog/select_product_radio" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProductRadio" validate="false">
+			<forward name="success" path="/dialog/select_product_radio.jsp" />
+		</action>		
+		<action path="/dialog/select_projCode_radio" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCodeRadio" validate="false">
+			<forward name="success" path="/dialog/select_projCode_radio.jsp" />
+			<forward name="success2" path="/dialog/select_projCode_product_radio.jsp" />
+		</action>			
+		<action path="/dialog/select_prodName_radio" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProdNameRadio" validate="false">
+			<forward name="success" path="/dialog/select_prodName_radio.jsp" />
+			<forward name="list_success" path="/dialog/selectProdNameRadio.jsp" />
+		</action>	
+		<action path="/dialog/select_mask_name_cb" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.BumpMaskListAction" validate="false">
+			<forward name="success" path="/dialog/select_mask_name_cb.jsp" />
+		</action>
+		<action path="/dialog/select_proj_cust" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectProjCust" validate="false">
+			<forward name="success"
+				path="/dialog/select_proj_cust.jsp" />
+		</action>
+
+		<action path="/dialog/select_cp_test_prog_name_cb" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpTestProgName" validate="false">
+			<forward name="success" path="/dialog/select_cp_test_prog_name_cb.jsp" />
+		</action>
+        <action path="/dialog/select_ft_test_prog_name_cb" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectFtTestProgName" validate="false">
+			<forward name="success" path="/dialog/select_ft_test_prog_name_cb.jsp" />
+		</action>
+		
+		<action path="/md/mask_layer_map_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MaskLayerMappingQueryAction" validate="false">
+			<forward name="success"
+				path="/md/mask_layer_map_query.jsp" />
+			<forward name="result"
+				path="/md/mask_layer_map_query_result.jsp" />
+		</action>		
+		<action path="/md/mask_layer_map_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MaskLayerMappingEditAction" validate="false">
+			<forward name="edit"
+				path="/md/mask_layer_map_edit.jsp" />
+			<forward name="success"
+				path="/md/mask_layer_map_edit.do?m=pre" />
+			<forward name="fail"
+				path="/md/mask_layer_map_edit.do?m=pre" />
+		</action>
+		<action path="/md/mask_layer_map_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.MaskLayerMappingCreateAction" validate="false">
+			<forward name="create"
+				path="/md/mask_layer_map_create.jsp" />
+			<forward name="success"
+				path="/md/mask_layer_map_edit.do?m=pre" />
+			<forward name="fail"
+				path="/md/mask_layer_map_create.do?m=pre" />	
+		</action>	
+		<action path="/dialog/select_mask_num_cb" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectMaskNumCb" validate="false">
+			<forward name="success"
+				path="/dialog/select_maskNum_cb.jsp" />
+		</action>		
+		<action path="/ajax/check_maskLayerMapping_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckMaskLayerMappingExist" validate="false">
+		</action>		
+		
+		<action path="/md/esd_test_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.EsdTestQueryAction" validate="false">
+			<forward name="pre_success" path="/md/esd_test_query.jsp" />
+			<forward name="query_success" path="/md/esd_test_query_result.jsp" />
+			<forward name="paging_success" path="/md/esd_test_query_result.jsp" />
+		</action>
+		
+		<action path="/md/esd_test_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.EsdTestCreateAction" validate="false">
+			<forward name="pre" path="/md/esd_test_create.jsp" />
+			<forward name="save" path="/md/esd_test_edit.do?m=pre" />
+			<forward name="fail" path="/md/esd_test_query.do?m=pre" />
+		</action>
+		
+		<action path="/md/esd_test_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.EsdTestEditAction" validate="false">
+			<forward name="pre" path="/md/esd_test_edit.jsp" />
+			<forward name="save" path="/md/esd_test_edit.do?m=pre" />
+			<forward name="fail" path="/md/esd_test_query.do?m=pre" />
+		</action>
+		
+
+		<action path="/md/htol_ra_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.HtolRaQueryAction" validate="false">
+			<forward name="success"
+				path="/md/htol_ra_query.jsp" />
+			<forward name="result"
+				path="/md/htol_ra_query_result.jsp" />
+		</action>		
+		<action path="/md/htol_ra_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.HtolRaEditAction" validate="false">
+			<forward name="edit"
+				path="/md/htol_ra_edit.jsp" />
+			<forward name="success"
+				path="/md/htol_ra_edit.do?m=pre" />
+			<forward name="fail"
+				path="/md/htol_ra_edit.do?m=pre" />
+		</action>
+		<action path="/md/htol_ra_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.HtolRaCreateAction" validate="false">
+			<forward name="create"
+				path="/md/htol_ra_create.jsp" />
+			<forward name="success"
+				path="/md/htol_ra_edit.do?m=pre" />
+			<forward name="fail"
+				path="/md/htol_ra_create.do?m=pre" />	
+		</action>	
+		<action path="/dialog/select_htolProjCodeWVersion" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectHtolProjCodeWVersion" validate="false">
+			<forward name="success"
+				path="/dialog/select_htolProjCodeWVersion.jsp" />
+		</action>			
+
+		<action path="/ajax/check_htolRa_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckHtolRaExist" validate="false">
+		</action>	
+		<action path="/ajax/fetch_proj_fab" scope="request"
+			type="com.cista.pidb.ajax.FetchProjFab" validate="false">
+		</action>	
+		
+		<action path="/md/pkg_ra_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.PkgRaQueryAction" validate="false">
+			<forward name="pre_success" path="/md/pkg_ra_query.jsp" />
+			<forward name="query_success" path="/md/pkg_ra_query_result.jsp" />			
+		</action>	
+		<action path="/md/pkg_ra_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.PkgRaCreateAction" validate="false">
+			<forward name="pre_success" path="/md/pkg_ra_create.jsp" />
+			<forward name="save_success" path="/md/pkg_ra_edit.do?m=pre" />			
+			<forward name="fail" path="/md/pkg_ra_query.do?m=pre" />			
+		</action>		
+		<action path="/md/pkg_ra_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.PkgRaEditAction" validate="false">
+			<forward name="pre_success" path="/md/pkg_ra_edit.jsp" />
+			<forward name="save_success" path="/md/pkg_ra_edit.do?m=pre" />			
+			<forward name="fail" path="/md/pkg_ra_query.do?m=pre" />			
+		</action>
+		<action path="/dialog/select_pkg_type" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPkgType" validate="false">
+			<forward name="list_success"
+				path="/dialog/select_pkgType_radio.jsp" />
+		</action>
+		<action path="/dialog/select_tape_vendor" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectTapeVendor" validate="false">
+			<forward name="list_success"
+				path="/dialog/select_tapeVendor_radio.jsp" />
+		</action>
+		<action path="/dialog/select_assySite" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectAssySite" validate="false">
+			<forward name="list_success"
+				path="/dialog/select_assySite_radio.jsp" />
+		</action>
+		
+		<action path="/ajax/check_icwafer_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckIcWaferExist" validate="false">
+		</action>
+		<action path="/ajax/check_icwafer_edit" scope="request"
+			type="com.cista.pidb.ajax.CheckIcWaferEdit" validate="false">
+		</action>
+		<action path="/ajax/check_tradPkg_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckTradPkgExist" validate="false">
+		</action>
+		<action path="/ajax/check_cornerLotChar_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckCornerLotCharExist" validate="false">
+		</action>
+		<action path="/ajax/check_esdTest_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckEsdTestExist" validate="false">
+		</action>
+		<action path="/ajax/check_pkgra_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckPkgRaExist" validate="false">
+		</action>
+	    <action path="/ajax/fetch_cog" scope="request"
+			type="com.cista.pidb.ajax.FetchCog" validate="false">
+		</action>
+		<action path="/ajax/package_type_list" scope="request"
+			type="com.cista.pidb.ajax.FetchPkgType" validate="false">
+		</action>
+			<!-- Add For Pkg_Ra Function at 20090618-->
+		<action path="/ajax/assembly_site_list" scope="request"
+			type="com.cista.pidb.ajax.FetchAssemblySite" validate="false">
+		</action>
+
+		<action path="/ajax/fetch_proj_codes" scope="request"
+			type="com.cista.pidb.ajax.FetchProjCodes" validate="false">
+		</action>
+		<action path="/ajax/auto_fetch_maskLayerCom" scope="request"
+			type="com.cista.pidb.ajax.AutoGetMaskLayerCom" validate="false">
+		</action>
+		<action path="/dialog/select_PkgCode_PkgRa" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectPkgCode" validate="false">
+			<forward name="list_success" path="/dialog/select_pkgCode_pkgRa.jsp" />
+		</action>
+		<!-- AJAX -->
+		<action path="/ajax/fetch_icFg" scope="request"
+			type="com.cista.pidb.ajax.FetchIcFg" validate="false">
+		</action>
+		<action path="/ajax/fetch_icFgMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcFgMaterialNum" validate="false">
+		</action>		
+		<action path="/ajax/fetch_cpMateriaNum" scope="request"
+			type="com.cista.pidb.ajax.FetchCpMateriaNum" validate="false">
+		</action>	
+		<action path="/ajax/fetch_htolRaCust" scope="request"
+			type="com.cista.pidb.ajax.FetchHtolRaCust" validate="false">
+		</action>
+		<!-- Hank Add 2007/10/23 -->
+		<action path="/ajax/fetch_icTapeMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcTapeMaterialNum" validate="false">
+		</action>	
+		<action path="/ajax/fetch_icWfMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfMaterialNum" validate="false">
+		</action>	
+		<action path="/ajax/fetch_icBumpMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcBumpMaterialNum" validate="false">
+		</action>	
+		<action path="/ajax/fetch_icCpMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcCpMaterialNum" validate="false">
+		</action>
+		<action path="/ajax/fetch_icAssyMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchIcAssyMaterialNum" validate="false">
+		</action>
+		<action path="/ajax/fetch_icWaferMaterialDesc" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWaferMaterialDesc" validate="false">
+		</action>
+		<action path="/ajax/fetch_icWfPolish" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfPolish" validate="false">
+		</action>
+		<action path="/ajax/fetch_icWfColorFilter" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfColorFilter" validate="false">
+		</action>
+		<action path="/ajax/fetch_icWfWaferCf" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfWaferCf" validate="false">
+		</action>
+		<action path="/ajax/fetch_icWfCsp" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfCsp" validate="false">
+		</action>
+		<!-- End -->
+		<!-- Hank Add 2008/01/07 Start -->
+		<action path="/ajax/fetch_icCpMaterialNumByProjCode" scope="request"
+			type="com.cista.pidb.ajax.FetchIcCpMaterialNumByProjCode" validate="false">
+		</action>
+		<action path="/ajax/fetch_cpTestProgByCPMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchCpTestProgByCPMaterialNum" validate="false">
+		</action>
+		<action path="/ajax/fetch_maxVariantCpMateriaNum" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantCpMateriaNum" validate="false">
+		</action>
+		<!-- Hank Add 2008/01/07 End -->
+		<action path="/dialog/product_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.ProductEditAction" validate="false">
+			<forward name="edit"
+				path="/dialog/product_edit.jsp" />			
+			<forward name="success"
+				path="/dialog/select_product1.jsp" />
+		</action>
+		<!-- Hank Add 2008/03/10 -->
+		<action path="/ajax/fetch_projWVersion" scope="request"
+			type="com.cista.pidb.ajax.FetchProjWVersion" validate="false">
+		</action>
+
+		<!-- create CSP For Himax PIDB 2009/03/04 -->
+
+		<action path="/md/csp_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CspQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/csp_query.jsp" />
+			<forward name="query_success"
+				path="/md/csp_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/csp_query_result.jsp" />
+		</action>
+		
+		<action path="/md/csp_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CspCreateAction" validate="false">
+			<forward name="save_success"	path="/md/csp_query.do?m=pre" />
+			<forward name="pre_success" path="/md/csp_create.jsp"/>	
+			<forward name="release_fail" path="/md/csp_edit.do?m=pre"/>
+		</action>
+
+		<action path="/md/csp_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.CspEditAction" validate="false">
+			<forward name="pre_success"	path="/md/csp_edit.jsp" />
+			<forward name="save_success" path="/md/csp_edit.do?m=pre"/>
+		</action>
+
+		<action path="/ajax/check_csp_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckCspExist" validate="false">
+		</action>
+		<!-- add end -->
+
+		<!-- For RW create at 2009/03/04 -->
+
+		<action path="/md/rw_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RwCreateAction" validate="false">
+			<forward name="success"
+				path="/md/rw_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/rw_create.jsp" />
+		</action>
+		<action path="/md/rw_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RwEditAction" validate="false">
+			<forward name="success"
+				path="/md/rw_edit.do?m=pre" />
+			<forward name="viewJsp"
+				path="/md/rw_edit.jsp" />
+		</action>	
+		<action path="/md/rw_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RwQueryAction" validate="false">
+			<forward name="query"
+				path="/md/rw_query.jsp" />
+			<forward name="result"
+				path="/md/rw_query_result.jsp" />
+			<forward name="create"
+				path="/md/rw_create.do?m=pre" />
+			<forward name="edit"
+				path="/md/rw_edit.do?m=pre" />
+		</action>
+		
+		<action path="/ajax/check_rw_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckRwExist" validate="false">
+		</action>
+
+		<!-- Trad Pkg LF -->
+		<action path="/ajax/fetch_tradPkgLF" scope="request"
+			type="com.cista.pidb.ajax.FetchTradPkgLF" validate="false">
+		</action>	
+		<action path="/ajax/fetch_icFgMCP" scope="request"
+			type="com.cista.pidb.ajax.FetchIcFgMCP" validate="false">
+		</action>
+		<!-- add by jere 2010/01/12  -->
+		<action path="/md/rpt_link_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptLinkQueryAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_partno_link_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_partno_link_query_result.jsp" />
+		</action>
+	   <!-- add by jere 2010/02/09  -->
+		<action path="/md/rpt_maskset_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptMasksetQueryAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_maskset_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_maskset_query.jsp" />
+		</action>
+		<!-- add by jere 2010/02/22  -->
+		<action path="/md/rpt_prod_fab_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptProdToFabQueryAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_prod_fab_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_prod_fab_query.jsp" />
+		</action>
+		<!-- add by jere 2010/03/01  -->
+		<action path="/md/rpt_prod_tapeout_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptProdTapeoutAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_prod_tapeout_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_prod_tapeout_query.jsp" />
+		</action>
+		<!-- add by jere 2010/03/08  -->
+		<action path="/md/rpt_tapeout_detail_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptTapeoutDetailAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_tapeout_detail_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_tapeout_detail_query.jsp" />
+		</action>
+		
+		<!-- add by jere 2010/03/10  -->
+		<action path="/md/rpt_projCode_hitrate_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptProjCodeHitRateAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_projCode_hitrate_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_projCode_hitrate_query.jsp" />
+		</action>
+		
+		<action path="/md/rpt_projName_hitrate_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.RptProjNameHitRateAction" validate="false">
+			<forward name="success"
+				path="/md/rpt_projName_hitrate_query.jsp" />
+			<forward name="result"
+				path="/md/rpt_projName_hitrate_query.jsp" />
+		</action>
+
+		<!-- For TSV Material_Number 20100728 Hank -->
+		<action path="/dialog/select_cpTsvMaterialNum" scope="request" parameter="m"
+			type="com.cista.pidb.dialog.action.SelectCpTsvMaterialNum" validate="false">
+			<forward name="success"
+				path="/dialog/select_cpTsvMaterial.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_maxVariantTsv" scope="request"
+			type="com.cista.pidb.ajax.FetchMaxVariantTsv" validate="false">
+						<forward name="success"
+				path="/dialog/select_cpTsvMaterial.jsp" />
+		</action>
+
+		<action path="/ajax/fetch_icWfTsv" scope="request"
+			type="com.cista.pidb.ajax.FetchIcWfTsv" validate="false">
+		</action>
+
+		<action path="/md/tsv_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TsvCreateAction" validate="false">
+			<forward name="save_success"	path="/md/tsv_edit.do?m=pre" />
+			<forward name="pre_success" path="/md/tsv_create.jsp"/>	
+		</action>
+
+		<action path="/md/tsv_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TsvEditAction" validate="false">
+			<forward name="pre_success"	path="/md/tsv_edit.jsp" />
+			<forward name="save_success" path="/md/tsv_edit.do?m=pre"/>
+		</action>
+
+		<action path="/ajax/check_tsv_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckTsvExist" validate="false">
+		</action>
+
+		<action path="/md/tsv_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.TsvQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/tsv_query.jsp" />
+			<forward name="query_success"
+				path="/md/tsv_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/tsv_query_result.jsp" />
+		</action>
+
+		<!-- For WLM Material_Number 20100802 Hank -->
+		<action path="/md/wlm_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlmCreateAction" validate="false">
+			<forward name="save_success"	path="/md/wlm_edit.do?m=pre" />
+			<forward name="pre_success" path="/md/wlm_create.jsp"/>	
+		</action>
+
+		<action path="/md/wlm_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlmEditAction" validate="false">
+			<forward name="pre_success"	path="/md/wlm_edit.jsp" />
+			<forward name="save_success" path="/md/wlm_edit.do?m=pre"/>
+		</action>
+
+		<action path="/ajax/fetch_WlmMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchWlmMaterialNum" validate="false">
+		</action>
+
+		<action path="/ajax/check_wlm_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckWlmExist" validate="false">
+		</action>
+
+		<action path="/md/wlm_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlmQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/wlm_query.jsp" />
+			<forward name="query_success"
+				path="/md/wlm_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/wlm_query_result.jsp" />
+		</action>
+
+		<!-- For WLO Material_Number 20100824 Hank -->
+		<action path="/md/wlo_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WloCreateAction" validate="false">
+			<forward name="save_success"	path="/md/wlo_edit.do?m=pre" />
+			<forward name="pre_success" path="/md/wlo_create.jsp"/>	
+		</action>
+
+		<action path="/md/wlo_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WloEditAction" validate="false">
+			<forward name="pre_success"	path="/md/wlo_edit.jsp" />
+			<forward name="save_success" path="/md/wlo_edit.do?m=pre"/>
+		</action>
+
+		<action path="/ajax/fetch_WloMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchWloMaterialNum" validate="false">
+		</action>
+
+		<action path="/ajax/check_wlo_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckWloExist" validate="false">
+		</action>
+
+		<action path="/md/wlo_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WloQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/wlo_query.jsp" />
+			<forward name="query_success"
+				path="/md/wlo_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/wlo_query_result.jsp" />
+		</action>
+
+		<action path="/ajax/get_WloMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.GetWloMaterialNum" validate="false">
+		</action>
+
+		<!-- For WLH Material_Number 20101116 Hank -->
+		<action path="/md/wlh_create" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlhCreateAction" validate="false">
+			<forward name="save_success"	path="/md/wlh_edit.do?m=pre" />
+			<forward name="pre_success" path="/md/wlh_create.jsp"/>	
+		</action>
+
+		<action path="/md/wlh_edit" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlhEditAction" validate="false">
+			<forward name="pre_success"	path="/md/wlh_edit.jsp" />
+			<forward name="save_success" path="/md/wlh_edit.do?m=pre"/>
+		</action>
+
+		<action path="/ajax/fetch_WlhMaterialNum" scope="request"
+			type="com.cista.pidb.ajax.FetchWlhMaterialNum" validate="false">
+		</action>
+
+		<action path="/ajax/check_wlh_exist" scope="request"
+			type="com.cista.pidb.ajax.CheckWlhExist" validate="false">
+		</action>
+
+		<action path="/md/wlh_query" scope="request" parameter="m"
+			type="com.cista.pidb.md.action.WlhQueryAction" validate="false">
+			<forward name="pre_success"
+				path="/md/wlh_query.jsp" />
+			<forward name="query_success"
+				path="/md/wlh_query_result.jsp" />
+			<forward name="paging_success"
+				path="/md/wlh_query_result.jsp" />
+		</action>
+
+	</action-mappings>
+</struts-config>
+

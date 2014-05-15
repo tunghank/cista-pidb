@@ -1,0 +1,71 @@
+@import url("layout/basic.css");
+
+.zpMenuHimax .zpMenu-top .zpMenu-label,
+.zpMenuHimax .zpMenu-top a {
+	color: #3A3A3A;
+}
+
+.zpMenuHimax .zpMenuContainer {
+	border-width: 0px 0px 0px 0px;
+	border-style: solid;
+	border-color: #7A7A7A #7A7A7A #6D6D6D #7A7A7A;
+}
+
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu {
+	opacity: 0.85;
+	-moz-opacity: 0.85;
+	filter: alpha(opacity=100);
+}
+
+/* Current selected items in top horizontal menu*/
+.zpMenuHimax .zpMenu-top .zpMenu-item-selected .zpMenu-label,
+.zpMenuHimax .zpMenu-top .zpMenu-item-selected a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.zpMenuHimax .zpMenu .zpMenu-item-selected {
+	border: 0;
+	background: #95DDFF;
+}
+
+/* Current selected items in vertical menu*/
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-selected {
+	border: 0;
+	background: #95DDFF;
+}
+
+/* The arrow that shows up when there's a sub-menu */
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-collapsed .zpMenu-label {
+	background: url("Himax/arrow_gray.gif") no-repeat right center;
+}
+
+/* The arrow that shows up when there's a sub-menu and the item is hovered*/
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-expanded .zpMenu-label {
+	background: url("Himax/arrow_white.gif") #95DDFF no-repeat right center;
+}
+
+/* Override previously defined background defined in this css for HR */
+.zpMenuHimax .zpMenuContainer .zpMenu-item-hr,
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-hr {
+	padding:0;
+	margin:0;
+	border:none;
+	background:black;
+}
+
+/* Override for himax*/
+.zpMenuHimax .zpMenuContainer .zpMenu-item { width:165px; height:20px; background-color:rgb(55, 168, 222); padding-right:8px; padding-left:8px}
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item { background-color:rgb(55, 168, 222); }
+.zpMenuHimax .zpMenuContainer .zpMenu-item .zpMenu-label { color:rgb(255, 255, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenu-item a { color:rgb(255, 255, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item .zpMenu-label { color:rgb(255, 255, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item a { color:rgb(255, 255, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenu-item-selected { background-color:rgb(149, 221, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-selected { background-color:rgb(149, 221, 255); }
+.zpMenuHimax .zpMenuContainer .zpMenu-item-selected .zpMenu-label { color:#333333; }
+.zpMenuHimax .zpMenuContainer .zpMenu-item-selected a { color:#333333; }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-selected .zpMenu-label { color:#333333; }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenu-item-selected a { color:#333333; }
+.zpMenuHimax .zpMenuContainer .zpMenuCustWidth150 { width:200px; }
+.zpMenuHimax .zpMenuContainer .zpMenuContainer .zpMenuCustWidth150 { width:200px; }
