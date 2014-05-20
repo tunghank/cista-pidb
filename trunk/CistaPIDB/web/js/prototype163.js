@@ -1,10 +1,11 @@
-/*  Prototype JavaScript framework, version 1.6.0.3
- *  (c) 2005-2008 Sam Stephenson
- *
- *  Prototype is freely distributable under the terms of an MIT-style license.
- *  For details, see the Prototype web site: http://www.prototypejs.org/
- *
- *--------------------------------------------------------------------------*/
+/*
+ * Prototype JavaScript framework, version 1.6.0.3 (c) 2005-2008 Sam Stephenson
+ * 
+ * Prototype is freely distributable under the terms of an MIT-style license.
+ * For details, see the Prototype web site: http://www.prototypejs.org/
+ * 
+ * --------------------------------------------------------------------------
+ */
 
 var Prototype = {
   Version: '1.6.0.3',
@@ -1260,10 +1261,11 @@ Ajax.Request = Class.create(Ajax.Base, {
       headers['Content-type'] = this.options.contentType +
         (this.options.encoding ? '; charset=' + this.options.encoding : '');
 
-      /* Force "Connection: close" for older Mozilla browsers to work
-       * around a bug where XMLHttpRequest sends an incorrect
-       * Content-length header. See Mozilla Bugzilla #246651.
-       */
+      /*
+		 * Force "Connection: close" for older Mozilla browsers to work around a
+		 * bug where XMLHttpRequest sends an incorrect Content-length header.
+		 * See Mozilla Bugzilla #246651.
+		 */
       if (this.transport.overrideMimeType &&
           (navigator.userAgent.match(/Gecko\/(\d{4})/) || [0,2005])[1] < 2005)
             headers['Connection'] = 'close';
@@ -2219,7 +2221,8 @@ if (Prototype.Browser.Opera) {
 }
 
 else if (Prototype.Browser.IE) {
-  // IE doesn't report offsets correctly for static elements, so we change them
+  // IE doesn't report offsets correctly for static elements, so we change
+	// them
   // to "relative" to get the values, then change them back.
   Element.Methods.getOffsetParent = Element.Methods.getOffsetParent.wrap(
     function(proceed, element) {
@@ -2420,8 +2423,10 @@ else if (Prototype.Browser.WebKit) {
     return element;
   };
 
-  // Safari returns margins on body which is incorrect if the child is absolutely
-  // positioned.  For performance reasons, redefine Element#cumulativeOffset for
+  // Safari returns margins on body which is incorrect if the child is
+	// absolutely
+  // positioned. For performance reasons, redefine Element#cumulativeOffset
+	// for
   // KHTML/WebKit only.
   Element.Methods.cumulativeOffset = function(element) {
     var valueT = 0, valueL = 0;
@@ -2439,7 +2444,8 @@ else if (Prototype.Browser.WebKit) {
 }
 
 if (Prototype.Browser.IE || Prototype.Browser.Opera) {
-  // IE and Opera are missing .innerHTML support for TABLE-related and SELECT elements
+  // IE and Opera are missing .innerHTML support for TABLE-related and SELECT
+	// elements
   Element.Methods.update = function(element, content) {
     element = $(element);
 
@@ -2718,9 +2724,11 @@ document.viewport = {
       window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
   }
 };
-/* Portions of the Selector class are derived from Jack Slocum's DomQuery,
- * part of YUI-Ext version 0.40, distributed under the terms of an MIT-style
- * license.  Please see http://www.yui-ext.com/ for more information. */
+/*
+ * Portions of the Selector class are derived from Jack Slocum's DomQuery, part
+ * of YUI-Ext version 0.40, distributed under the terms of an MIT-style license.
+ * Please see http://www.yui-ext.com/ for more information.
+ */
 
 var Selector = Class.create({
   initialize: function(expression) {
@@ -3851,7 +3859,8 @@ Event.Methods = (function() {
 
       if (currentTarget && currentTarget.tagName) {
         // Firefox screws up the "click" event when moving between radio buttons
-        // via arrow keys. It also screws up the "load" and "error" events on images,
+        // via arrow keys. It also screws up the "load" and "error" events on
+		// images,
         // reporting the document as the target instead of the original image.
         if (type === 'load' || type === 'error' ||
           (type === 'click' && currentTarget.tagName.toLowerCase() === 'input'
@@ -4094,8 +4103,10 @@ Object.extend(document, {
 });
 
 (function() {
-  /* Support for the DOMContentLoaded event is based on work by Dan Webb,
-     Matthias Miller, Dean Edwards and John Resig. */
+  /*
+	 * Support for the DOMContentLoaded event is based on work by Dan Webb,
+	 * Matthias Miller, Dean Edwards and John Resig.
+	 */
 
   var timer;
 

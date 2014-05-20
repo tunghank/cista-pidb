@@ -1,5 +1,5 @@
 // Calendar ALBANIAN language
-//author Rigels Gordani rige@hotmail.com
+// author Rigels Gordani rige@hotmail.com
 
 // ditet
 Calendar._DN = new Array
@@ -12,7 +12,7 @@ Calendar._DN = new Array
 "E Shtune",
 "E Diele");
 
-//ditet shkurt
+// ditet shkurt
 Calendar._SDN = new Array
 ("Die",
 "Hen",

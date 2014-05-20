@@ -1,10 +1,12 @@
-/*  Prototype JavaScript framework, version 1.4.0
- *  (c) 2005 Sam Stephenson <sam@conio.net>
- *
- *  Prototype is freely distributable under the terms of an MIT-style license.
- *  For details, see the Prototype web site: http://prototype.conio.net/
- *
-/*--------------------------------------------------------------------------*/
+/*
+ * Prototype JavaScript framework, version 1.4.0 (c) 2005 Sam Stephenson
+ * <sam@conio.net>
+ * 
+ * Prototype is freely distributable under the terms of an MIT-style license.
+ * For details, see the Prototype web site: http://prototype.conio.net/
+ * 
+ * /*--------------------------------------------------------------------------
+ */
 
 var Prototype = {
   Version: '1.4.0',
@@ -664,10 +666,11 @@ Ajax.Request.prototype = Object.extend(new Ajax.Base(), {
       requestHeaders.push('Content-type',
         'application/x-www-form-urlencoded');
 
-      /* Force "Connection: close" for Mozilla browsers to work around
-       * a bug where XMLHttpReqeuest sends an incorrect Content-length
-       * header. See Mozilla Bugzilla #246651.
-       */
+      /*
+		 * Force "Connection: close" for Mozilla browsers to work around a bug
+		 * where XMLHttpReqeuest sends an incorrect Content-length header. See
+		 * Mozilla Bugzilla #246651.
+		 */
       if (this.transport.overrideMimeType)
         requestHeaders.push('Connection', 'close');
     }
@@ -1762,7 +1765,7 @@ var Position = {
 }
 
 // Safari returns margins on body which is incorrect if the child is absolutely
-// positioned.  For performance reasons, redefine Position.cumulativeOffset for
+// positioned. For performance reasons, redefine Position.cumulativeOffset for
 // KHTML/WebKit only.
 if (/Konqueror|Safari|KHTML/.test(navigator.userAgent)) {
   Position.cumulativeOffset = function(element) {

@@ -7,16 +7,16 @@
 // For full source code and docs, visit http://www.interactivetools.com/
 //
 // Version 3.0 developed by Mihai Bazon.
-//   http://dynarch.com/mishoo
+// http://dynarch.com/mishoo
 //
 // $Id: dialog.js 2436 2006-04-11 13:30:21Z shacka $
 
-// Though "Dialog" looks like an object, it isn't really an object.  Instead
+// Though "Dialog" looks like an object, it isn't really an object. Instead
 // it's just namespace for protecting global symbols.
 
 function Dialog(url, name, width, height, action, init) {
 	if (typeof init == "undefined") {
-		init = window;	// pass this window object by default
+		init = window; // pass this window object by default
 	}
 	Dialog._geckoOpenModal(url, name, width, height, action, init);
 };
@@ -58,7 +58,7 @@ Dialog._geckoOpenModal = function(url, name, width, height, action, init) {
 	// capture other frames
 	for (var i = 0; i < window.frames.length; capwin(window.frames[i++]));
 	// make up a function to be called when the Dialog ends.
-	Dialog._return = function (val) {
+	Dialog._return = function(val) {
 		if (val && action) {
 			action(val);
 		}
