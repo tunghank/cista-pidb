@@ -1,10 +1,10 @@
 function removeOptions(sel, keepFirst) {
 	var keepCount = 0;
-	if(keepFirst) {
+	if (keepFirst) {
 		keepCount = 1;
 	}
-	
-	while(sel.options.length>keepCount) {
+
+	while (sel.options.length > keepCount) {
 		sel.options.remove(keepCount);
 	}
 }
@@ -16,22 +16,22 @@ function removeOption(sel, keepFirst) {
 }
 
 function removeSelectedOptions(sel) {
-	while(sel.selectedIndex != -1) {
+	while (sel.selectedIndex != -1) {
 		sel.options.remove(sel.selectedIndex);
 	}
 }
 
 function addOption(sel, text, value) {
 	var oOption = document.createElement("OPTION");
-	oOption.text=text;
-	oOption.value=value;
+	oOption.text = text;
+	oOption.value = value;
 	sel.add(oOption);
 }
 
 function addDifferOption(sel, text, value) {
 	var oOption = document.createElement("OPTION");
-	oOption.text=text;
-	oOption.value=value;
+	oOption.text = text;
+	oOption.value = value;
 	var len = sel.options.length;
 	var flag = false;
 	for (i = 0; i < len; i++) {
@@ -43,12 +43,12 @@ function addDifferOption(sel, text, value) {
 	if (!flag) {
 		sel.add(oOption);
 	}
-	
+
 }
 
 function selectAllOptions(sel) {
 	if (sel && sel.options) {
-		for(var i=0; i<sel.options.length; i++) {
+		for (var i = 0; i < sel.options.length; i++) {
 			sel.options[i].selected = true;
 		}
 	}
@@ -77,7 +77,7 @@ function setMessage(target, msg) {
 
 function showHidePanel(panel) {
 	if ($(panel)) {
-		if ($(panel).style.display=="" || $(panel).style.display=="block") {
+		if ($(panel).style.display == "" || $(panel).style.display == "block") {
 			$(panel).style.display = "none";
 		} else {
 			$(panel).style.display = "block";
@@ -85,11 +85,11 @@ function showHidePanel(panel) {
 	}
 }
 
-//paging functions
-//paging functions for multi-paging
+// paging functions
+// paging functions for multi-paging
 function prevPage(n) {
 	if (n) {
-		$("currentTab").value=n;
+		$("currentTab").value = n;
 		$("pageNo" + n).value = parseInt($("pageNo" + n).value) - 1;
 		$("pagingForm").action = $("pagingForm").action + "?m=paging";
 		$("pagingForm").submit();
@@ -102,7 +102,7 @@ function prevPage(n) {
 
 function nextPage(n) {
 	if (n) {
-		$("currentTab").value=n;
+		$("currentTab").value = n;
 		$("pageNo" + n).value = parseInt($("pageNo" + n).value) + 1;
 		$("pagingForm").action = $("pagingForm").action + "?m=paging";
 		$("pagingForm").submit();
@@ -131,7 +131,7 @@ function reportDownload(fm, act) {
 
 function getRadioValue(r) {
 	var radios = document.getElementsByName(r);
-	for (var i=0; i<radios.length; i++) {
+	for (var i = 0; i < radios.length; i++) {
 		if (radios[i].checked) {
 			return radios[i].value;
 		}
@@ -139,26 +139,24 @@ function getRadioValue(r) {
 	return null;
 }
 
- //BY Value
-function SelectItem_Combo_Value(objList, szItem)
-{
+// BY Value
+function SelectItem_Combo_Value(objList, szItem) {
 	var nIndex;
-	
+
 	if (objList.length == 0) {
 		return;
 	}
 
-	//----- 1. search the szItem in objList.options[]
+	// ----- 1. search the szItem in objList.options[]
 	nIndex = -1;
-	for (i=0 ; i<objList.length; i++)
-	{
+	for (i = 0; i < objList.length; i++) {
 		if (objList.options[i].value == szItem) {
 			nIndex = i;
 		}
 	}
 
-	//----- 2. check if find or not
+	// ----- 2. check if find or not
 	if (nIndex >= 0) {
 		objList.selectedIndex = nIndex;
 	}
-} //--- end SelectItem_Combo () ---
+} // --- end SelectItem_Combo () ---

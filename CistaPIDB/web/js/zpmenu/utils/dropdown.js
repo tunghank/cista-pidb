@@ -1,24 +1,20 @@
 /**
-*  This is simple class for creating drop-down lists.
-* @param config [object] - pane config.
-*
-* Constructor recognizes the following properties of the config object
-* \code
-*	property name			| description
-*------------------------------------------------------------------------------
-*	element					| [string or object] Reference to DOM element.
-*							|	Created list will be displayed below it.
-*							|	Required.
-*	hook					| [string or object] Element that invokes dropdown.
-*							|	Optional.
-*	onselect				| [function] Function that will be called when user
-*							|	click on some row in dropdown. One argument
-*							|	will be passed to function: array of value in
-*							|	clicked row.
-* \endcode
-*/
-Zapatec.DropDown = function(objArgs){
-	if(arguments.length == 0){
+ * This is simple class for creating drop-down lists.
+ * 
+ * @param config
+ *            [object] - pane config.
+ * 
+ * Constructor recognizes the following properties of the config object \code
+ * property name | description
+ * ------------------------------------------------------------------------------
+ * element | [string or object] Reference to DOM element. | Created list will be
+ * displayed below it. | Required. hook | [string or object] Element that
+ * invokes dropdown. | Optional. onselect | [function] Function that will be
+ * called when user | click on some row in dropdown. One argument | will be
+ * passed to function: array of value in | clicked row. \endcode
+ */
+Zapatec.DropDown = function(objArgs) {
+	if (arguments.length == 0) {
 		objArgs = {};
 	}
 
@@ -28,7 +24,7 @@ Zapatec.DropDown = function(objArgs){
 // Inherit SuperClass
 Zapatec.inherit(Zapatec.DropDown, Zapatec.Widget);
 
-Zapatec.DropDown.prototype.init = function(objArgs){
+Zapatec.DropDown.prototype.init = function(objArgs) {
 	this.config.element = null;
 	this.config.hook = null;
 	this.config.onselect = null;
@@ -36,11 +32,11 @@ Zapatec.DropDown.prototype.init = function(objArgs){
 	// processing Widget functionality
 	Zapatec.DropDown.SUPERclass.init.call(this, objArgs);
 
-	if(typeof(this.config.element) == 'string'){
+	if (typeof(this.config.element) == 'string') {
 		this.config.element = document.getElementById(this.config.element);
 	}
 
-	if(this.config.element == null){
+	if (this.config.element == null) {
 		throw "No target element given";
 	}
 
@@ -61,61 +57,57 @@ Zapatec.DropDown.prototype.init = function(objArgs){
 
 	var self = this;
 
-	if(this.config.hook){
+	if (this.config.hook) {
 		// do not hide dropdown if user clicks on hood element
-		Zapatec.Utils.addEvent(this.config.hook, 'click', function(){self.isVisible = true;});
+		Zapatec.Utils.addEvent(this.config.hook, 'click', function() {
+					self.isVisible = true;
+				});
 	}
 
 	// hide dropdown if ESC key was pressed
 	Zapatec.Utils.addEvent(document, 'keypress', function(e) {
-		if (!e){
-			e = window.event;
-		}
+				if (!e) {
+					e = window.event;
+				}
 
-		if (e.keyCode == 27){
-			self.hide();
-		}
-	});
+				if (e.keyCode == 27) {
+					self.hide();
+				}
+			});
 
 	// hide dropdown if user clicks anywhere except dropdown or hook.
 	Zapatec.Utils.addEvent(document, 'click', function(e) {
-		if(!self.isVisible){
-			self.hide();
-		}
+				if (!self.isVisible) {
+					self.hide();
+				}
 
-		self.isVisible = false;
-	});
+				self.isVisible = false;
+			});
 }
 
 /**
-* Returns reference to DropDown container element
-* @return reference to DropDown container element
-*/
-Zapatec.DropDown.prototype.getContainer = function(){
+ * Returns reference to DropDown container element
+ * 
+ * @return reference to DropDown container element
+ */
+Zapatec.DropDown.prototype.getContainer = function() {
 	return this.container;
 }
 
 /**
-* Set dropdown content to given array
-*	@param objSource - [object] JSON object with structure like:
-*	{
-*		"header": [ // describes list header. Optional
-*			{
-*				name: "Col name1", // column name
-*				style: "color: blue", // apply this style to current column header
-*				colStyle: "color: blue" // apply this style to all cells in this col
-*				colClassName: "customCol" // add this class to all cells in this col
-*			},
-*			...
-*		],
-*		"body": [ // describes list content. Required.
-*			["str1, col1", "str1, col2"], // array with values
-*			...
-*		]
-*	}
-*/
-Zapatec.DropDown.prototype.setContent = function(objSource){
-	if(objSource == null){
+ * Set dropdown content to given array
+ * 
+ * @param objSource -
+ *            [object] JSON object with structure like: { "header": [ //
+ *            describes list header. Optional { name: "Col name1", // column
+ *            name style: "color: blue", // apply this style to current column
+ *            header colStyle: "color: blue" // apply this style to all cells in
+ *            this col colClassName: "customCol" // add this class to all cells
+ *            in this col }, ... ], "body": [ // describes list content.
+ *            Required. ["str1, col1", "str1, col2"], // array with values ... ] }
+ */
+Zapatec.DropDown.prototype.setContent = function(objSource) {
+	if (objSource == null) {
 		return null;
 	}
 
@@ -123,10 +115,10 @@ Zapatec.DropDown.prototype.setContent = function(objSource){
 }
 
 /**
-* Shows dropdown list.
-*/
-Zapatec.DropDown.prototype.show = function(){
-	if(this.container != null){
+ * Shows dropdown list.
+ */
+Zapatec.DropDown.prototype.show = function() {
+	if (this.container != null) {
 		this.hide();
 	}
 
@@ -134,7 +126,10 @@ Zapatec.DropDown.prototype.show = function(){
 
 	// create dropdown container
 	this.container = Zapatec.Utils.createElement("div");
-	this.container.className = this.getClassName({prefix: "zpDropDown", suffix: "Container"})
+	this.container.className = this.getClassName({
+				prefix : "zpDropDown",
+				suffix : "Container"
+			})
 	this.container.style.position = 'absolute';
 	this.container.style.display = 'none';
 	this.table = Zapatec.Utils.createElement("table");
@@ -144,7 +139,9 @@ Zapatec.DropDown.prototype.show = function(){
 
 	this.container.style.zIndex = Zapatec.Utils.getMaxZindex();
 	var self = this;
-	this.container.onclick = function(){self.isVisible = true;}
+	this.container.onclick = function() {
+		self.isVisible = true;
+	}
 
 	this.header = this.table.appendChild(document.createElement("thead"));
 	this.body = this.table.appendChild(document.createElement("tbody"));
@@ -157,7 +154,8 @@ Zapatec.DropDown.prototype.show = function(){
 	// position container to config.element
 	var pos = Zapatec.Utils.getAbsolutePos(this.config.element);
 	this.container.style.left = pos.x + "px";
-	this.container.style.top = (pos.y + this.config.element.offsetHeight) + "px";
+	this.container.style.top = (pos.y + this.config.element.offsetHeight)
+			+ "px";
 	this.container.style.visibility = "hidden";
 	this.container.style.display = 'block';
 	this.table.width = "";
@@ -166,19 +164,24 @@ Zapatec.DropDown.prototype.show = function(){
 	this.table.width = "100%";
 
 	// if container height is more them 200px - put scroller.
-	if(this.container.clientHeight > 200){
+	if (this.container.clientHeight > 200) {
 		var scrollEl = Zapatec.is_gecko ? this.body : this.container;
-		scrollEl.className += " " + this.getClassName({prefix: "zpDropDown", suffix: "Overflowed"});
+		scrollEl.className += " " + this.getClassName({
+					prefix : "zpDropDown",
+					suffix : "Overflowed"
+				});
 
-		var wid = (2*scrollEl.scrollWidth - scrollEl.clientWidth) + "px";
+		var wid = (2 * scrollEl.scrollWidth - scrollEl.clientWidth) + "px";
 		this.container.style.width = wid;
 		this.table.width = wid;
 	}
 
 	// use WCH for hide SELECTs under dropdown.
 	this.WCH = Zapatec.Utils.createWCH();
-	if(this.WCH){
-		Zapatec.Utils.setupWCH(this.WCH, parseInt(this.container.style.left), parseInt(this.container.style.top), this.container.clientWidth, this.container.clientHeight);
+	if (this.WCH) {
+		Zapatec.Utils.setupWCH(this.WCH, parseInt(this.container.style.left),
+				parseInt(this.container.style.top), this.container.clientWidth,
+				this.container.clientHeight);
 		this.WCH.style.zIndex = this.container.style.zIndex - 1;
 	}
 
@@ -186,62 +189,59 @@ Zapatec.DropDown.prototype.show = function(){
 }
 
 /**
-* Hide dropdown list.
-*/
-Zapatec.DropDown.prototype.hide = function(){
-	if(this.container != null){
+ * Hide dropdown list.
+ */
+Zapatec.DropDown.prototype.hide = function() {
+	if (this.container != null) {
 		Zapatec.Utils.destroy(this.container);
 		this.container = null;
 
-		if(this.WCH){
+		if (this.WCH) {
 			Zapatec.Utils.destroy(this.WCH);
 		}
 	}
 }
 
 /**
-* \internal Clear table content.
-*/
+ * \internal Clear table content.
+ */
 
-Zapatec.DropDown.prototype.clear = function(){
-	if(this.header != null){
-		for(var ii = this.header.childNodes.length - 1; ii >= 0 ; ii--){
+Zapatec.DropDown.prototype.clear = function() {
+	if (this.header != null) {
+		for (var ii = this.header.childNodes.length - 1; ii >= 0; ii--) {
 			this.header.removeChild(this.header.childNodes[ii]);
 		}
 	}
 
-	if(this.body != null){
-		for(var ii = this.body.childNodes.length - 1; ii >= 0 ; ii--){
+	if (this.body != null) {
+		for (var ii = this.body.childNodes.length - 1; ii >= 0; ii--) {
 			this.body.removeChild(this.body.childNodes[ii]);
 		}
 	}
 }
 
 /**
-* \internal Fills table with data.
-*/
-Zapatec.DropDown.prototype.fillRows = function(){
+ * \internal Fills table with data.
+ */
+Zapatec.DropDown.prototype.fillRows = function() {
 	this.clear();
 	var tr = null;
 	var td = null;
 
-	if(
-		this.content.header != null &&
-		this.content.header.length > 0
-	){
+	if (this.content.header != null && this.content.header.length > 0) {
 		tr = this.header.appendChild(document.createElement("tr"));
 		tr.className = "dropDownHeader";
 
-		for(var ii = 0; ii < this.content.header.length; ii++){
+		for (var ii = 0; ii < this.content.header.length; ii++) {
 			var col = this.content.header[ii];
 
 			td = tr.appendChild(document.createElement("td"));
 
-			if(col.className != null){
+			if (col.className != null) {
 				td.className = col.className
 			}
 
-			if(col.style != null){
+			if (col.style != null) {
 				Zapatec.DropDown.applyStyle(td, col.style);
 			}
 
@@ -250,19 +250,14 @@ Zapatec.DropDown.prototype.fillRows = function(){
 	}
 
 	var colspan = 1;
-	if(
-		this.content.header != null
-	){
+	if (this.content.header != null) {
 		colspan = this.content.header.length;
-	} else if(this.content.body != null){
+	} else if (this.content.body != null) {
 		colspan = this.content.body[0].length;
 	}
 
 	// display "No records" if there is no records for content.body
-	if(
-		this.content.body == null ||
-		this.content.body.length == 0
-	){
+	if (this.content.body == null || this.content.body.length == 0) {
 		tr = this.header.appendChild(document.createElement("tr"));
 		td = tr.appendChild(document.createElement("td"));
 		td.className = "noRecords";
@@ -272,7 +267,7 @@ Zapatec.DropDown.prototype.fillRows = function(){
 	} else {
 		var isOdd = false;
 
-		for(var ii = 0; ii < this.content.body.length; ii++){
+		for (var ii = 0; ii < this.content.body.length; ii++) {
 			tr = this.body.appendChild(document.createElement("tr"));
 			tr.style.width = "100%"
 			tr.className = "dropDown" + ((isOdd = !isOdd) ? "Odd" : "Even");
@@ -280,25 +275,31 @@ Zapatec.DropDown.prototype.fillRows = function(){
 			var self = this;
 
 			// when user clicks on row - select it.
-			tr.onclick = new Function("var self = Zapatec.Widget.all['" + this.id + "']; self.selectValue(" + ii + "); return true;")
+			tr.onclick = new Function("var self = Zapatec.Widget.all['"
+					+ this.id + "']; self.selectValue(" + ii
+					+ "); return true;")
 
-			if(Zapatec.is_ie){
-				tr.onmouseover = function(){this.className += ' dropDownHighlighted'}
-				tr.onmouseout = function(){this.className = this.className.replace(' dropDownHighlighted', "")}
+			if (Zapatec.is_ie) {
+				tr.onmouseover = function() {
+					this.className += ' dropDownHighlighted'
+				}
+				tr.onmouseout = function() {
+					this.className = this.className.replace(
+							' dropDownHighlighted', "")
+				}
 			}
 
-			for(var jj = 0; jj < this.content.body[ii].length; jj++){
+			for (var jj = 0; jj < this.content.body[ii].length; jj++) {
 				td = tr.appendChild(document.createElement("td"));
 
-				if(
-					this.content.header != null &&
-					this.content.header[jj] != null
-				){
-					if(this.content.header[jj].colStyle != null){
-						Zapatec.DropDown.applyStyle(td, this.content.header[jj].colStyle);
+				if (this.content.header != null
+						&& this.content.header[jj] != null) {
+					if (this.content.header[jj].colStyle != null) {
+						Zapatec.DropDown.applyStyle(td,
+								this.content.header[jj].colStyle);
 					}
 
-					if(this.content.header[jj].colClassName != null){
+					if (this.content.header[jj].colClassName != null) {
 						td.className = this.content.header[jj].colClassName;
 					}
 				}
@@ -310,24 +311,21 @@ Zapatec.DropDown.prototype.fillRows = function(){
 }
 
 /**
-* \internal calls user defined function and send values from clicked string to
-* it
-*/
-Zapatec.DropDown.prototype.selectValue = function(currentRow){
-	if(
-		this.config.onselect != null &&
-		this.content != null &&
-		currentRow < this.content.body.length
-	){
+ * \internal calls user defined function and send values from clicked string to
+ * it
+ */
+Zapatec.DropDown.prototype.selectValue = function(currentRow) {
+	if (this.config.onselect != null && this.content != null
+			&& currentRow < this.content.body.length) {
 		this.config.onselect(this.content.body[currentRow])
 		this.hide();
 	}
 }
 
-Zapatec.DropDown.prototype.setWidth = function(width){
+Zapatec.DropDown.prototype.setWidth = function(width) {
 	width = parseInt(width);
 
-	if(isNaN(width)){
+	if (isNaN(width)) {
 		return false;
 	}
 
@@ -337,32 +335,35 @@ Zapatec.DropDown.prototype.setWidth = function(width){
 }
 
 /**
-* \internal Applies given style to given element.
-*	@param elRef - [string or object] - reference to target element. Required.
-*	@param style - [string] string value of style. Required.
-*/
-Zapatec.DropDown.applyStyle = function(elRef, style){
-	if(typeof(elRef) == 'string'){
+ * \internal Applies given style to given element.
+ * 
+ * @param elRef -
+ *            [string or object] - reference to target element. Required.
+ * @param style -
+ *            [string] string value of style. Required.
+ */
+Zapatec.DropDown.applyStyle = function(elRef, style) {
+	if (typeof(elRef) == 'string') {
 		elRef = document.getElementById(elRef);
 	}
 
-	if(elRef == null || style == null || elRef.style == null){
+	if (elRef == null || style == null || elRef.style == null) {
 		return null;
 	}
 
-	if(Zapatec.is_opera){
+	if (Zapatec.is_opera) {
 		var pairs = style.split(";");
 
-		for(var ii =0; ii < pairs.length; ii++){
+		for (var ii = 0; ii < pairs.length; ii++) {
 			var kv = pairs[ii].split(":");
 			var value = kv[1].replace(/^\s*/, '').replace(/\s*$/, '');
 			var key = "";
 
-			for(var jj = 0; jj < kv[0].length; jj++){
-				if(kv[0].charAt(jj) == "-"){
+			for (var jj = 0; jj < kv[0].length; jj++) {
+				if (kv[0].charAt(jj) == "-") {
 					jj++;
 
-					if(jj < kv[0].length){
+					if (jj < kv[0].length) {
 						key += kv[0].charAt(jj).toUpperCase();
 					}
 
@@ -371,9 +372,10 @@ Zapatec.DropDown.applyStyle = function(elRef, style){
 
 				key += kv[0].charAt(jj);
 			}
-			try{
+			try {
 				elRef.style[key] = value;
-			} catch(e){}
+			} catch (e) {
+			}
 		}
 	} else {
 		elRef.style.cssText = style;

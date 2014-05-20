@@ -1,8 +1,8 @@
 /**
  * Zapatec modal object
  */
-Zapatec.Modal = function (objArgs) {
-	if(arguments.length == 0){
+Zapatec.Modal = function(objArgs) {
+	if (arguments.length == 0) {
 		objArgs = {};
 	}
 
@@ -12,7 +12,7 @@ Zapatec.Modal = function (objArgs) {
 // Inherit SuperClass
 Zapatec.inherit(Zapatec.Modal, Zapatec.Widget);
 
-Zapatec.Modal.prototype.init = function(objArgs){
+Zapatec.Modal.prototype.init = function(objArgs) {
 	this.config.zIndex = 1000;
 	this.config.x = null;
 	this.config.y = null;
@@ -25,7 +25,7 @@ Zapatec.Modal.prototype.init = function(objArgs){
 	Zapatec.Modal.SUPERclass.init.call(this, objArgs);
 };
 
-Zapatec.Modal.prototype.create = function (zIndex) {
+Zapatec.Modal.prototype.create = function(zIndex) {
 	zIndex = zIndex || this.config.zIndex;
 
 	this.WCH = Zapatec.Utils.createWCH();
@@ -33,7 +33,7 @@ Zapatec.Modal.prototype.create = function (zIndex) {
 	this.container = Zapatec.Utils.createElement("div", document.body);
 	var br = {};
 
-	if(this.config.x != null && this.config.y != null){
+	if (this.config.x != null && this.config.y != null) {
 		br.x = this.config.x;
 		br.y = this.config.y;
 	} else {
@@ -51,11 +51,11 @@ Zapatec.Modal.prototype.create = function (zIndex) {
 	st.left = br.x + "px";
 	var dim = Zapatec.Utils.getWindowSize();
 
-	if(this.config.width != null){
+	if (this.config.width != null) {
 		dim.width = this.config.width;
 	}
 
-	if(this.config.height != null){
+	if (this.config.height != null) {
 		dim.height = this.config.height;
 	}
 
@@ -64,37 +64,44 @@ Zapatec.Modal.prototype.create = function (zIndex) {
 
 	st.zIndex = zIndex;
 
-	this.container.className = this.getClassName({prefix: "zpModal" + (Zapatec.is_opera ? "Opera" : "")})
+	this.container.className = this.getClassName({
+				prefix : "zpModal" + (Zapatec.is_opera ? "Opera" : "")
+			})
 
-	if(this.config.scroll == true){
+	if (this.config.scroll == true) {
 		Zapatec.ScrollWithWindow.stickiness = 1;
 		Zapatec.ScrollWithWindow.register(this.container);
-		if (this.WCH){
+		if (this.WCH) {
 			this.WCH.style.zIndex = zIndex - 1;
 			Zapatec.ScrollWithWindow.register(this.WCH);
 		}
 	}
 };
 
-Zapatec.Modal.prototype.show = function (zIndex) {
+Zapatec.Modal.prototype.show = function(zIndex) {
 	if (!this.container) {
 		this.create(zIndex);
 	} else {
 		zIndex = zIndex || this.config.zIndex;
 		this.container.style.zIndex = zIndex;
-		if (this.WCH) this.WCH.style.zIndex = zIndex - 1;
+		if (this.WCH)
+			this.WCH.style.zIndex = zIndex - 1;
 	}
 	this.container.style.display = "block";
-	Zapatec.Utils.setupWCH(this.WCH, parseInt(this.container.style.left, 10), parseInt(this.container.style.top, 10), parseInt(this.container.style.width, 10), parseInt(this.container.style.height, 10));
+	Zapatec.Utils.setupWCH(this.WCH, parseInt(this.container.style.left, 10),
+			parseInt(this.container.style.top, 10), parseInt(
+					this.container.style.width, 10), parseInt(
+					this.container.style.height, 10));
 };
 
-Zapatec.Modal.prototype.hide = function (destroy) {
+Zapatec.Modal.prototype.hide = function(destroy) {
 	if (destroy) {
 		Zapatec.Utils.destroy(this.container);
 		Zapatec.Utils.destroy(this.WCH);
 		this.container = null;
 	} else {
-		if (this.container) this.container.style.display = "none";
+		if (this.container)
+			this.container.style.display = "none";
 		Zapatec.Utils.hideWCH(this.WCH);
 	}
 };
@@ -102,8 +109,8 @@ Zapatec.Modal.prototype.hide = function (destroy) {
 /**
  * Zapatec loader object
  */
-Zapatec.Progress = function (objArgs) {
-	if(arguments.length == 0){
+Zapatec.Progress = function(objArgs) {
+	if (arguments.length == 0) {
 		objArgs = {};
 	}
 
@@ -113,7 +120,7 @@ Zapatec.Progress = function (objArgs) {
 // Inherit SuperClass
 Zapatec.inherit(Zapatec.Progress, Zapatec.Widget);
 
-Zapatec.Progress.prototype.init = function(objArgs){
+Zapatec.Progress.prototype.init = function(objArgs) {
 	this.config.zIndex = 1000;
 	this.config.x = null;
 	this.config.y = null;
@@ -126,11 +133,11 @@ Zapatec.Progress.prototype.init = function(objArgs){
 
 	var modalConfig = {};
 
-	if(typeof(this.config.container) == 'string'){
+	if (typeof(this.config.container) == 'string') {
 		this.config.container = document.getElementById(this.config.container);
 	}
 
-	if(this.config.container != null){
+	if (this.config.container != null) {
 		var size = Zapatec.Utils.getAbsolutePos(this.config.container);
 
 		this.config.x = size.x;
@@ -152,11 +159,13 @@ Zapatec.Progress.prototype.init = function(objArgs){
 	this.active = false;
 };
 
-Zapatec.Progress.prototype.start = function (message) {
+Zapatec.Progress.prototype.start = function(message) {
 	this.active = true;
 	this.modal.show();
 	this.message = Zapatec.Utils.createElement("div", document.body);
-	this.message.className = this.getClassName({prefix: "zpProgress"});
+	this.message.className = this.getClassName({
+				prefix : "zpProgress"
+			});
 	var st = this.message.style;
 	st.position = "absolute";
 	st.zIndex = this.config.zIndex;
@@ -165,30 +174,30 @@ Zapatec.Progress.prototype.start = function (message) {
 
 	var size = Zapatec.Utils.getWindowSize();
 
-	if(this.config.x != null && this.config.y != null){
+	if (this.config.x != null && this.config.y != null) {
 		size.x = this.config.x;
 		size.y = this.config.y;
 	}
 
-	if(this.config.width != null && this.config.height != null){
+	if (this.config.width != null && this.config.height != null) {
 		size.width = this.config.width;
 		size.height = this.config.height;
 	}
 
 	var br = Zapatec.Utils.getAbsolutePos(this.modal.container);
-	x = (size.width -  this.message.offsetWidth)/2 + br.x; 
-	y = (size.height - this.message.offsetHeight)/2 + br.y;
+	x = (size.width - this.message.offsetWidth) / 2 + br.x;
+	y = (size.height - this.message.offsetHeight) / 2 + br.y;
 	st.left = x + "px";
 	st.top = y + "px";
 };
 
-Zapatec.Progress.prototype.stop = function () {
+Zapatec.Progress.prototype.stop = function() {
 	this.active = false;
 	this.modal.hide(true);
 	Zapatec.Utils.destroy(this.message);
 	this.message = null;
 };
 
-Zapatec.Progress.prototype.isActive = function () {
+Zapatec.Progress.prototype.isActive = function() {
 	return this.active;
 }

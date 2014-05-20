@@ -1,55 +1,61 @@
 /*
  * Dumpe the dom, for an item, often the body.
  * 
- * Use with something like 
- * <a href='#' onclick='new dump(document.getElementsByTagName("body")[0], true);' >Dump DOM </a>
- * $Id: dump.js 2436 2006-04-11 13:30:21Z shacka $
+ * Use with something like <a href='#' onclick='new
+ * dump(document.getElementsByTagName("body")[0], true);' >Dump DOM </a> $Id:
+ * dump.js 2436 2006-04-11 13:30:21Z shacka $
  * 
- * Heavily borrowed from htmlarea. 
+ * Heavily borrowed from htmlarea.
  */
 
-dump = function (domElement, bWindow) {
-  // Use destination window to print the tree or create a new
-  // window, then print the tree into that window
-  var strDump=dump.getHTML(domElement, false, 0)
-  if (!bWindow) return strDump
+dump = function(domElement, bWindow) {
+	// Use destination window to print the tree or create a new
+	// window, then print the tree into that window
+	var strDump = dump.getHTML(domElement, false, 0)
+	if (!bWindow)
+		return strDump
 
-  var outputWindow;
-  outputWindow=window.open("","dumpdom");
-  outputWindow.focus();
+	var outputWindow;
+	outputWindow = window.open("", "dumpdom");
+	outputWindow.focus();
 
-  outputWindow.document.open("text/html", "replace");
-  outputWindow.document.write("<HTML><HEAD><TITLE>DOM</TITLE></HEAD><BODY>\n");
-  outputWindow.document.write("<textarea rows=20 cols=60>")
-  outputWindow.document.write(strDump)
-  outputWindow.document.write("</textarea>")
-  outputWindow.document.write("</BODY></HTML>\n");
-  outputWindow.document.close();
+	outputWindow.document.open("text/html", "replace");
+	outputWindow.document
+			.write("<HTML><HEAD><TITLE>DOM</TITLE></HEAD><BODY>\n");
+	outputWindow.document.write("<textarea rows=20 cols=60>")
+	outputWindow.document.write(strDump)
+	outputWindow.document.write("</textarea>")
+	outputWindow.document.write("</BODY></HTML>\n");
+	outputWindow.document.close();
 }
 
 dump.agt = navigator.userAgent.toLowerCase();
-dump.is_ie     = ((dump.agt.indexOf("msie") != -1) && (dump.agt.indexOf("opera") == -1));
+dump.is_ie = ((dump.agt.indexOf("msie") != -1) && (dump.agt.indexOf("opera") == -1));
 dump.RE_tagName = /(<\/|<)\s*([^ \t\n>]+)/ig;
 
 dump.getHTML = function(root, outputRoot, intDeep) {
 
 	var i2;
 	var html = "";
-	for (i2=0; i2 <= intDeep; i2++) html+="  "
+	for (i2 = 0; i2 <= intDeep; i2++)
+		html += "  "
 	switch (root.nodeType) {
-		case 1: // Node.ELEMENT_NODE
-		case 11: // Node.DOCUMENT_FRAGMENT_NODE
+		case 1 : // Node.ELEMENT_NODE
+		case 11 : // Node.DOCUMENT_FRAGMENT_NODE
 			var closed;
 			var i;
-			var root_tag = (root.nodeType == 1) ? root.tagName.toLowerCase() : '';
+			var root_tag = (root.nodeType == 1)
+					? root.tagName.toLowerCase()
+					: '';
 			if (dump.is_ie && root_tag == "head") {
 				if (outputRoot)
 					html += "\n<head>\n";
 				// lowercasize
 				var save_multiline = RegExp.multiline;
 				RegExp.multiline = true;
-				var txt = root.innerHTML.replace(dump.RE_tagName, function(str, p1, p2) {
-						return p1 + p2.toLowerCase();
+				var txt = root.innerHTML.replace(dump.RE_tagName, function(str,
+								p1, p2) {
+							return p1 + p2.toLowerCase();
 						});
 				RegExp.multiline = save_multiline;
 				html += '\n' + txt;
@@ -77,19 +83,24 @@ dump.getHTML = function(root, outputRoot, intDeep) {
 						// For this reason we extract the
 						// values directly from the root node.
 						// I'm starting to HATE JavaScript
-						// development.  Browser differences
+						// development. Browser differences
 						// suck.
 						//
-						// Using Gecko the values of href and src are converted to absolute links
+						// Using Gecko the values of href and src are converted
+						// to absolute links
 						// unless we get them using nodeValue()
-						if (typeof root[a.nodeName] != "undefined" && name != "href" && name != "src") {
+						if (typeof root[a.nodeName] != "undefined"
+								&& name != "href" && name != "src") {
 							value = root[a.nodeName];
 						} else {
 							value = a.nodeValue;
-							// IE seems not willing to return the original values - it converts to absolute
-							// links using a.nodeValue, a.value, a.stringValue, root.getAttribute("href")
+							// IE seems not willing to return the original
+							// values - it converts to absolute
+							// links using a.nodeValue, a.value, a.stringValue,
+							// root.getAttribute("href")
 							// So we have to strip the baseurl manually -/
-							if (value && (dump.is_ie && (name == "href" || name == "src"))) {
+							if (value
+									&& (dump.is_ie && (name == "href" || name == "src"))) {
 								value = this.stripBaseURL(value);
 							}
 						}
@@ -107,28 +118,31 @@ dump.getHTML = function(root, outputRoot, intDeep) {
 				html += closed ? " />\n" : ">\n";
 			}
 
-
 			for (i = root.firstChild; i; i = i.nextSibling) {
-				html += this.getHTML(i, true, intDeep+1)
+				html += this.getHTML(i, true, intDeep + 1)
 			}
 
 			if (outputRoot && !closed) {
-				for (i2=0; i2 <= intDeep; i2++) html+="  "
+				for (i2 = 0; i2 <= intDeep; i2++)
+					html += "  "
 				html += "</" + root.tagName.toLowerCase() + ">\n";
 			}
 			break;
-		case 3: // Node.TEXT_NODE
-			// If a text node is alone in an element and all spaces, replace it with an non breaking one
-			// This partially undoes the damage done by moz, which translates '&nbsp;'s into spaces in the data element
-			if ( !root.previousSibling && !root.nextSibling && root.data.match(/^\s*$/i) ) html += '&nbsp;';
-			else 
-			{
+		case 3 : // Node.TEXT_NODE
+			// If a text node is alone in an element and all spaces, replace it
+			// with an non breaking one
+			// This partially undoes the damage done by moz, which translates
+			// '&nbsp;'s into spaces in the data element
+			if (!root.previousSibling && !root.nextSibling
+					&& root.data.match(/^\s*$/i))
+				html += '&nbsp;';
+			else {
 				html += this.htmlEncode(root.data) + '\n';
 			}
 			break;
-		case 8: // Node.COMMENT_NODE
+		case 8 : // Node.COMMENT_NODE
 			html += "<!--" + root.data + "-->";
-			break;		// skip comments, for now.
+			break; // skip comments, for now.
 	}
 
 	return html;
@@ -142,7 +156,8 @@ dump.stripBaseURL = function(string) {
 	var basere = new RegExp(baseurl);
 	string = string.replace(basere, "");
 
-	// strip host-part of URL which is added by MSIE to links relative to server root
+	// strip host-part of URL which is added by MSIE to links relative to server
+	// root
 	baseurl = baseurl.replace(/^(https?:\/\/[^\/]+)(.*)$/, '$1');
 	basere = new RegExp(baseurl);
 	return string.replace(basere, "");
@@ -164,5 +179,3 @@ dump.needsClosingTag = function(el) {
 	var closingTags = " head script style div span tr td tbody table em strong font a title ";
 	return (closingTags.indexOf(" " + el.tagName.toLowerCase() + " ") != -1);
 };
-
-
