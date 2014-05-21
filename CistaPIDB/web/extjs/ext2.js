@@ -1,5 +1,5 @@
 //function user(){
-//	//Java 的Constructor , Public
+//	//Java �onstructor , Public
 //	this.name = "Hank";
 //	this.age = 26;
 //	//Private
@@ -23,6 +23,16 @@
 
 
 (function() {
+	
+	//動態引入
+	Ext.Loader.setConfig({
+		enabled:true,
+		paths:{
+			myApp:'extjs/ux'
+		}
+	});
+	
+	
 	Ext.onReady(function(){
 		/**
 		var win = new Ext.window.Window({
@@ -60,6 +70,48 @@
 //		    layout: 'fit'
 //		});
 //		win.show();
-//	});
+
+
+//		//動態引入
+//		Ext.create("ux.myWin",{
+//			title: 'Hello2',
+//			requires:['ux.myWin'] //動態引入
+//		}).show();
+		
+		
+		Ext.get("myButton").on("click",function(){
+			//動態引入
+			Ext.create("ux.myWin",{
+				title: 'Hello2',
+				requires:['ux.myWin'] //動態引入
+			}).show();
+			
+			var win1 = Ext.create("ux.myWin",{
+				title: 'Hello2',
+				price: 600,
+				requires:['ux.myWin'] //動態引入
+			});
+			
+			alert(win1.getPrice());
+		});		
+		
+		//mixins
+		Ext.define('say', {
+		     canSay: function() {
+		         alert("I'm on the highway to hell...");
+			 }
+		});
+		
+		Ext.define('user', {
+		     mixins: {
+		     	say:'say'
+		     }
+		});
+		
+		var u = Ext.create("user",{});
+		u.canSay();
+		
+		
+	});
 
 })();
