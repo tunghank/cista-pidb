@@ -43,16 +43,23 @@
 		});
 		*/
 		
-		var o = {
-			say: function(){
-				alert('Hank')
-			}
-		}
+//		var o = {
+//			say: function(){
+//				alert('Hank')
+//			}
+//		}
+//		
+//		var aliasFn = Ext.Function.alias(o,'say');
+//		alert(aliasFn);
+//		alert(aliasFn());
 		
-		var aliasFn = Ext.Function.alias(o,'say');
-		alert(aliasFn);
-		alert(aliasFn());
-		
-	});
+//		var win = Ext.create('Ext.window.Window',{
+//			title: 'Hello',
+//		    height: 200,
+//		    width: 400,
+//		    layout: 'fit'
+//		});
+//		win.show();
+//	});
 
 })();
