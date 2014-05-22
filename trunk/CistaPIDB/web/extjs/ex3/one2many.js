@@ -1,6 +1,6 @@
 (function(){
 	Ext.onReady(function(){
-		//ÀàÀÏÊ¦
+		//Class è€å¸«
 		Ext.regModel("teacher",{
 			fideld:[
 				{name:'teacherId',type:"int"},
@@ -9,17 +9,18 @@
 			hasMany:{
 				 model: 'student',
 			     name : 'getStudent',
-       			 filterProperty: 'teacher_Id'
+       			 filterProperty: 'teacherId' //é—œé€£
 			}
 		});
-		//Ñ§Éú
+		
+		//å­¸ç”Ÿ
 		Ext.regModel("student",{
 			fideld:[
 				{name:'studentId',type:"int"},
 				{name:'name',type:"auto"},
-				{name:"teacher_Id",type:'int'}
+				{name:"teacherId",type:'int'}
 			]
 		});
-		//t.students µÃµ½×ÓÀàµÄÒ»¸östoreÊı¾İ¼¯ºÏ
+		//t.students å¾—åˆ°é¡çš„ä¸€å€‹storeçš„æ•¸æ“šé›†åˆ
 	})
 })();
