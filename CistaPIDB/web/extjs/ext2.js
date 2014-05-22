@@ -98,19 +98,28 @@
 		//mixins
 		Ext.define('say', {
 		     canSay: function() {
-		         alert("I'm on the highway to hell...");
+		         alert("Hello");
 			 }
 		});
 		
+		Ext.define('sing', {
+		     sing: function() {
+		         alert("Hello 123")
+		     }
+		});
+		
+		
 		Ext.define('user', {
+			//extend:'say'
 		     mixins: {
-		     	say:'say'
+		     	say:'say',
+		     	sing:'sing'
 		     }
 		});
 		
 		var u = Ext.create("user",{});
 		u.canSay();
-		
+		u.sing();
 		
 	});
 
