@@ -1,7 +1,8 @@
 (function(){
-	Ext.data.validations.lengthMessage = "´íÎóµÄ³¤¶È";
+	//Ext.data.validations.lengthMessage = "Length too long or too short";
 	Ext.onReady(function(){
-		//À©Õ¹Ò²¾ÍÊÇÎÒÃÇ×Ô¶¨ÒåÑéÖ¤»úÖÆµÄµÄÒ»¸öĞÂµÄÑéÖ¤·½·¨
+		
+		//æ”¹é€  è‡ªå®šç¾©é©—è­‰Function
 		Ext.apply(Ext.data.validations,{
 			age:function(config, value){
 				var min = config.min;
@@ -9,11 +10,11 @@
 				if(min <= value && value<=max){
 					return true;
 				}else{
-					this.ageMessage = this.ageMessage+"ËûµÄ·¶Î§Ó¦¸ÃÊÇ["+min+"~"+max+"]";
+					this.ageMessage = this.ageMessage+" Length ["+min+"~"+max+"]";
 					return false;
 				}
 			},
-			ageMessage:'ageÊı¾İ³öÏÖµÄÁË´íÎó'
+			ageMessage:'ä¸èƒ½å°æ–¼0 ä¹Ÿä¸èƒ½å¤§æ–¼150'
 		});
 		
 		
@@ -29,27 +30,33 @@
 				{type:'age',field:"age",min:0,max:150}
 			]
 		});
+		
+		
 		var p1 = Ext.create("person",{
 			name:'uspcat.com',
 			age:-26,
 			email:'yunfengcheng2008@126.com'
 		});	
+		
 		var errors = p1.validate();
 		var errorInfo = [];
 		errors.each(function(v){
+			//alert(v);
 			errorInfo.push(v.field+"  "+v.message);
 		});
 		alert(errorInfo.join("\n"));
 	});
+	
+	
 	/**
-	 * name 2~6
+	 * name 2~6 å­—å…ƒ
 	 * set(String name){
-	 * 	 if(){
+	 * 	 if(name é•·åº¦ > 6){
 	 * 	 }else{
 	 * 	 }
 	 * }
 	 */
-	//age ²»ÄÜĞ¡ÓÚ0Ò²²»ÄÜ´óÓÚ150
+	//ageä¸èƒ½å°æ–¼0 ä¹Ÿä¸èƒ½å¤§æ–¼150
 })();
 
 
