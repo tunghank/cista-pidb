@@ -1,6 +1,6 @@
 (function(){
 	Ext.onReady(function(){
-		//ÎÒÃÇÀûÓÃExt.defineÀ´´´½¨ÎÒÃÇµÄÄ£ĞÍÀà
+
 		//DB table person(name,age,email)
 		Ext.define("person",{
 			extend:"Ext.data.Model",
@@ -10,7 +10,7 @@
 				{name:'email',type:'auto'}
 			]
 		});
-		//MVCÄ£Ê½ÖĞmodelÒ»¶¨ÊÇM²ã
+		//MVCä¸­ä¸€è¡Œæ˜¯Må±¤
 		Ext.regModel("user",{
 			fields:[
 				{name:'name',type:'auto'},
@@ -18,28 +18,30 @@
 				{name:'email',type:'auto'}
 			]
 		});
-		//ÊµÀı»¯ÎÒÃÇµÄpersonÀà
-		//1.new¹Ø¼ü×Ö
+		//å¯¦æ›†åŒ–
+		//1.new é—œéµå­
 		var p = new person({
-			name:'uspcat.com',
-			age:26,
-			email:'yunfengcheng2008@126.com'
+			name:'hank.tang',
+			age:28,
+			email:'tunghank@gamil.com'
 		});
-		//alert(p.get('name'));
-		var p1 = Ext.create("person",{
-			name:'uspcat.com',
-			age:26,
-			email:'yunfengcheng2008@126.com'
-		});
-		//alert(p1.get('age'));
-		var p2 = Ext.ModelMgr.create({
-			name:'uspcat.com',
-			age:26,
-			email:'yunfengcheng2008@126.com'
-		},'person');
-		//alert(p2.get('email'));
-		//alert(p2.getName());//? class object.getClass.getName 
-		alert(person.getName());
+		alert(p.get('name'));
+		
+//		var p1 = Ext.create("person",{
+//			name:'uspcat.com',
+//			age:26,
+//			email:'yunfengcheng2008@126.com'
+//		});
+//		//alert(p1.get('age'));
+//		var p2 = Ext.ModelMgr.create({
+//			name:'uspcat.com',
+//			age:26,
+//			email:'yunfengcheng2008@126.com'
+//		},'person');
+//		//alert(p2.get('email'));
+//		//alert(p2.getName());//? class object.getClass.getName 
+//		alert(person.getName());
+		
 	});
 })();
 
