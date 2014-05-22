@@ -25,22 +25,23 @@
 			age:28,
 			email:'tunghank@gamil.com'
 		});
-		alert(p.get('name'));
+		//alert(p.get('name'));
 		
-//		var p1 = Ext.create("person",{
-//			name:'uspcat.com',
-//			age:26,
-//			email:'yunfengcheng2008@126.com'
-//		});
-//		//alert(p1.get('age'));
-//		var p2 = Ext.ModelMgr.create({
-//			name:'uspcat.com',
-//			age:26,
-//			email:'yunfengcheng2008@126.com'
-//		},'person');
-//		//alert(p2.get('email'));
-//		//alert(p2.getName());//? class object.getClass.getName 
-//		alert(person.getName());
+		var p1 = Ext.create("person",{
+			name:'hank.tang',
+			age:28,
+			email:'tunghank@gamil.com'
+		});
+		//alert(p1.get('age'));
+		
+		var p2 = Ext.ModelMgr.create({
+			name:'hank.tang',
+			age:28,
+			email:'tunghank@gamil.com'
+		},'person');
+		alert(p2.get('email'));
+		//alert(p2.getName());//? class object.getClass.getName 
+		alert(person.getName());
 		
 	});
 })();
