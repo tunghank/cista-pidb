@@ -6,30 +6,37 @@
 				{anem:'age',type:'int'}
 			]
 		});
-		//²»ÓÃcreate·½·¨ ÎÒÃÇÖ±½ÓÓÃproxyÀ´´´½¨¶ÔÏóÊı¾İ
+		
+		//ä¸ç”¨Createæ–¹æ³•ç›´æ¥ç”¨proxyä¾†å‰µå»ºå°è±¡
 		var userData = [
-			{name:'uspcat.com',age:1},
-			{name:'yunfengcheng',age:26}
+			{name:'Hank1',age:1},
+			{name:'Hank2',age:26}
 		];
-		//´´½¨modelµÄ´úÀíÀà
+		
+		
+		//å‰µå»ºmodelçš„ä»£ç†é¡
 		var memoryProxy = Ext.create("Ext.data.proxy.Memory",{
 			data:userData,
 			model:'user'
 		})
 		
-		userData.push({name:'new uspcat.com',age:1});
-		//update
-		memoryProxy.update(new Ext.data.Operation({
-			action:'update',
-			data:userData
-		}),function(result){},this);
+//		userData.push({name:'new uspcat.com',age:1});
+//		//update
+//		memoryProxy.update(new Ext.data.Operation({
+//			action:'update',
+//			data:userData
+//		}),function(result){},this);
 		
-		//¾Í¿ÉÒÔ×öCRUDÁË
+		//åšCRUD
+		
 		memoryProxy.read(new Ext.data.Operation(),function(result){
+			//alert(result);
 			var datas = result.resultSet.records;
 			Ext.Array.each(datas,function(model){
 				alert(model.get('name'));
 			})
 		});
+		
+		
 	});
 })();
