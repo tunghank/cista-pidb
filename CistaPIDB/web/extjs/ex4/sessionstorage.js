@@ -9,11 +9,11 @@
 				id  : 'twitter-Searches'
 			}
 		});
-		//我们用store来初始化数据
+		//鍒╃敤store渚嗗垵濮嬪寲鏁告摎
 		var store = new Ext.data.Store({
 			model:user
 		});
-		store.add({name:'yunfengcheng'});
+		store.add({name:'Hank5'});
 		store.sync();
 		store.load();
 		var msg = [];
