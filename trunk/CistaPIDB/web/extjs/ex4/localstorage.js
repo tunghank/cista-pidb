@@ -5,22 +5,26 @@
 				{name:'name',type:'string'}
 			],
 			proxy:{
-				type:'localstorage',
+				type:'localstorage', //Session
 				id  : 'twitter-Searches'
 			}
 		});
-		//我们用store来初始化数据
+		
+		//鍒╃敤store渚嗗垵濮嬪寲鏁告摎
 		var store = new Ext.data.Store({
 			model:user
 		});
-		store.add({name:'uspcat.com'});
-		store.sync();
+		
+		store.add({name:'Hank4'});
+		store.sync();//Saving
+		
 		store.load();
 		var msg = [];
 		store.each(function(rec){
 			msg.push(rec.get('name'));
 		});
 		alert(msg.join("\n"));
+		
 	})
 })();
 	

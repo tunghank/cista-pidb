@@ -20,12 +20,12 @@
 			model:'user'
 		})
 		
-//		userData.push({name:'new uspcat.com',age:1});
-//		//update
-//		memoryProxy.update(new Ext.data.Operation({
-//			action:'update',
-//			data:userData
-//		}),function(result){},this);
+		//update
+		userData.push({name:'Hank3',age:1});
+		memoryProxy.update(new Ext.data.Operation({
+			action:'update',
+			data:userData
+		}),function(result){},this);
 		
 		//做CRUD
 		
