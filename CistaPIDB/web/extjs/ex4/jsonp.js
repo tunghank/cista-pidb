@@ -9,6 +9,7 @@
 				url:'http://www.uspcat.com/extjs/person.php'
 			}
 		});
+		
 		var person = Ext.ModelManager.getModel('person');
 		person.load(1,{
 			scope:this,
@@ -16,5 +17,6 @@
 				alert(model.get('name'));
 			}
 		});
+		
 	})
 })();
